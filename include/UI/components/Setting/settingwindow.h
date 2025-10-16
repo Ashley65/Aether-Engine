@@ -33,8 +33,38 @@ public:
     explicit SettingWindow(QWidget* parent = nullptr);
     ~SettingWindow() override;
 
+protected:
+    void mousePressEvent(QMouseEvent* event) override;
+    void mouseMoveEvent(QMouseEvent* event) override;
+    void mouseReleaseEvent(QMouseEvent* event) override;
+    void resizeEvent(QResizeEvent* event) override;
+
 private:
-    Ui::SettingWindow* ui;
+private:
+    Ui::SettingWindow *ui;
+
+    enum class ResizeEdge {
+        None,
+        Left,
+        Right,
+        Top,
+        Bottom,
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight
+    };
+
+    ResizeEdge getResizeEdge(const QPoint& pos);
+    void updateCursor(const QPoint& pos);
+
+    bool m_isDragging = false;
+    bool m_isResizing = false;
+    QPoint m_dragPosition;
+    ResizeEdge m_resizeEdge = ResizeEdge::None;
+    QRect m_resizeStartGeometry;
+    QPoint m_resizeStartPos;
+    static constexpr int RESIZE_MARGIN = 8;
 };
 
 
