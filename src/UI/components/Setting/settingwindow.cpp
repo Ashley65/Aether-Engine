@@ -6,8 +6,10 @@
 
 #include <QMouseEvent>
 #include <QPushButton>
+#include <QMessageBox>
 #include <UI/components/Setting/settingwindow.h>
 #include "../resources/ui/ui_SettingWindow.h"
+
 
 
 SettingWindow::SettingWindow(QWidget* parent) :
@@ -17,6 +19,21 @@ SettingWindow::SettingWindow(QWidget* parent) :
     setMinimumSize(800, 600);
     setWindowFlags(Qt::Window | Qt::FramelessWindowHint);
     setMouseTracking(true);
+
+    // Setting Laoding Setting
+    SettingsManager::Instance().loadSettings();
+    SettingsManager::Instance().loadDefaultSettings();
+    loadSettingsFromManager();
+    // Connect buttons
+    connect(ui->saveButton, &QPushButton::clicked, this, &SettingWindow::onSaveButtonClicked);
+    connect(ui->resetButton, &QPushButton::clicked, this, &SettingWindow::onResetButtonClicked);
+    connect(ui->cancelButton, &QPushButton::clicked, this, &SettingWindow::onCancelButtonClicked);
+
+    // Update button states when settings change
+    connect(&SettingsManager::Instance(), &SettingsManager::tabSettingsCached,
+            this, &SettingWindow::updateButtonStates);
+
+    updateButtonStates();
 
     connect(ui->SettingExit, &QPushButton::clicked, this, &SettingWindow::close);
 
@@ -90,7 +107,7 @@ SettingWindow::SettingWindow(QWidget* parent) :
     );
 
     // Reset All button styling
-    ui->RestAll->setStyleSheet(
+    ui->resetButton->setStyleSheet(
         "QPushButton {"
         "   background-color: transparent;"
         "   color: #9ca3af;"               /* text-secondary */
@@ -107,7 +124,7 @@ SettingWindow::SettingWindow(QWidget* parent) :
     );
 
     // Save button styling (primary action)
-    ui->pushButton_2->setStyleSheet(
+    ui->saveButton->setStyleSheet(
         "QPushButton {"
         "   background-color: #3b82f6;"   /* info-500 - primary button */
         "   color: #ffffff;"               /* text-inverse */
@@ -145,16 +162,123 @@ SettingWindow::SettingWindow(QWidget* parent) :
     };
 
     for (const auto& tab : tabs) {
-        QWidget* page = new QWidget();
+        QWidget* page = nullptr;
+        if (tab.id == "simulation") {
+            page = new SimulationTab(this);
+        } else if (tab.id == "physics") {
+            page = new PhysicsEngineTab(this); // instantiate physics UI
+        } else if (tab.id == "ai")
+        {
+            page = new AIAgentTab(this);
+        } else if (tab.id == "hardware")
+        {
+           page = new HardwareTab(this);
+        } else if (tab.id == "communication")
+        {
+            page = new CommunicationTab(this);
+        }
+        else if (tab.id == "environment")
+        {
+            page = new EnvTab(this);
+        }
+        else if (tab.id == "visualization")
+        {
+            page = new VisualisationTab(this);
+        }
+        else if (tab.id == "advanced")
+        {
+            page = new AdvancedTab(this);
+        } else if (tab.id == "drone")
+        {
+            page = new droneTab(this);
+        }
+        else
+        {
+            page = new QWidget(this);
+        }
         ui->tabWidget->addTab(page, QIcon(tab.iconPath), tab.label);
     }
 
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, [this](int idx) {
+        QWidget* w = ui->tabWidget->widget(idx);
+        if (auto sim = qobject_cast<SimulationTab*>(w)) {
+            sim->loadSettings({}, true);
+        } else if (auto phys = qobject_cast<PhysicsEngineTab*>(w)) {
+            phys->loadSettings({}, true);
+        }
+    });
 }
 
 SettingWindow::~SettingWindow()
 {
     delete ui;
 }
+
+void SettingWindow::onSaveButtonClicked()
+{
+    SettingsManager::Instance().applyCachedSettings();
+    updateButtonStates();
+
+    // Optional: Show confirmation
+    QMessageBox::information(this, "Settings Saved", "Your settings have been saved successfully.");
+}
+
+void SettingWindow::onResetButtonClicked()
+{
+    auto reply = QMessageBox::question(this, "Reset to Defaults",
+                                       "Are you sure you want to reset all settings to default values?",
+                                       QMessageBox::Yes | QMessageBox::No);
+
+    if (reply == QMessageBox::Yes) {
+        SettingsManager::Instance().resetAllToDefaultSettings();
+        loadSettingsFromManager();
+        updateButtonStates();
+    }
+}
+
+void SettingWindow::onCancelButtonClicked()
+{
+    SettingsManager::Instance().cancelCachedSettings();
+    loadSettingsFromManager();
+    updateButtonStates();
+}
+
+void SettingWindow::updateButtonStates()
+{
+    bool hasChanges = SettingsManager::Instance().hasPendingChanges();
+    ui->saveButton->setEnabled(hasChanges);
+    ui->cancelButton->setEnabled(hasChanges);
+}
+
+
+void SettingWindow::loadSettingsFromManager()
+{
+    SettingsManager& manager = SettingsManager::Instance();
+
+    // Get current tab index
+    int currentIndex = ui->tabWidget->currentIndex();
+    QWidget* currentWidget = ui->tabWidget->widget(currentIndex);
+
+    // Load settings for each tab type
+    if (auto sim = qobject_cast<SimulationTab*>(currentWidget)) {
+        sim->loadSettings(manager.getCachedTabSettings("simulation"), true);
+    } else if (auto phys = qobject_cast<PhysicsEngineTab*>(currentWidget)) {
+        phys->loadSettings(manager.getCachedTabSettings("physics"), true);
+    } else if (auto ai = qobject_cast<AIAgentTab*>(currentWidget)) {
+
+    } else if (auto hw = qobject_cast<HardwareTab*>(currentWidget)) {
+
+    } else if (auto comm = qobject_cast<CommunicationTab*>(currentWidget)) {
+
+    } else if (auto env = qobject_cast<EnvTab*>(currentWidget)) {
+
+    } else if (auto vis = qobject_cast<VisualisationTab*>(currentWidget)) {
+
+    } else if (auto adv = qobject_cast<AdvancedTab*>(currentWidget)) {
+    }
+    // Add other tabs as needed
+}
+
 
 SettingWindow::ResizeEdge SettingWindow::getResizeEdge(const QPoint& pos)
 {
@@ -200,6 +324,12 @@ void SettingWindow::updateCursor(const QPoint& pos)
             setCursor(Qt::ArrowCursor);
             break;
     }
+}
+
+void SettingWindow::loadSettings(const QVariantMap& params, bool force)
+{
+    // TODO: Implement loading of settings from params
+    Q_UNIMPLEMENTED();
 }
 
 void SettingWindow::mousePressEvent(QMouseEvent* event)

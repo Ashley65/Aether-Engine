@@ -35,8 +35,17 @@ set(SOURCES
 		src/UI/components/Docker/dockerPanel.cpp
 		src/UI/components/Docker/dockerOverlay.cpp
 		src/UI/components/Setting/SettingWindow.cpp
-		"src/UI/components/Docker/FloatingPanel .cpp"
-
+		src/UI/components/Setting/Tabs/simulationtab.cpp
+		src/UI/components/Docker/FloatingPanel.cpp
+		src/UI/components/Setting/utils/settingManager.cpp
+		src/UI/components/Setting/Tabs/hardwaretab.cpp
+		src/UI/components/Setting/Tabs/physicsenginetab.cpp
+		src/UI/components/Setting/Tabs/aiagenttab.cpp
+		src/UI/components/Setting/Tabs/communicationtab.cpp
+		src/UI/components/Setting/Tabs/envtab.cpp
+		src/UI/components/Setting/Tabs/dronetab.cpp
+		src/UI/components/Setting/Tabs/advancedtab.cpp
+		src/UI/components/Setting/Tabs/visualisationtab.cpp
 
 
 )
@@ -49,13 +58,33 @@ set(HEADERS
 		include/UI/components/Docker/dockerPanel.h
 		include/UI/components/Docker/dockerOverlay.h
 		include/UI/components/Setting/SettingWindow.h
-		"include/UI/components/Docker/FloatingPanel.h"
-
+		include/UI/components/Setting/Tabs/simulationtab.h
+		include/UI/components/Docker/FloatingPanel.h
+		include/UI/components/Setting/utils/settingManager.h
+		include/UI/components/Setting/Tabs/physicsenginetab.h
+		include/UI/components/Setting/Tabs/aiagenttab.h
+		include/UI/components/Setting/Tabs/hardwaretab.h
+		include/UI/components/Setting/Tabs/communicationtab.h
+		include/UI/components/Setting/Tabs/envtab.h
+		include/UI/components/Setting/Tabs/visualisationtab.h
+		include/UI/components/Setting/Tabs/advancedtab.h
+		include/UI/components/Setting/Tabs/dronetab.h
 )
 
 set (RESOURCES
 		resources/ui/main_window.ui
 		resources/ui/SettingWindow.ui
+		resources/ui/simulationtab.ui
+		resources/ui/physicsenginetab.ui
+		resources/ui/aiagenttab.ui
+		resources/ui/hardwaretab.ui
+		resources/ui/communicationtab.ui
+		resources/ui/envtab.ui
+		resources/ui/visualisationtab.ui
+		resources/ui/advancedtab.ui
+		resources/ui/dronetab.ui
+
+
 )
 
 add_executable(Aether-Engine

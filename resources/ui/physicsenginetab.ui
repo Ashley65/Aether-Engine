@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PhysicsEngineTab</class>
+ <widget class="QWidget" name="PhysicsEngineTab">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PhysicsEngineTab</string>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>600</width>
+        <height>950</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="scrollContentLayout">
+       <property name="spacing">
+        <number>20</number>
+       </property>
+       <property name="leftMargin">
+        <number>30</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>30</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
+
+       <!-- Gravity Computation Group -->
+       <item>
+        <widget class="QGroupBox" name="groupGravityComputation">
+         <property name="title">
+          <string>Gravity Computation</string>
+         </property>
+         <layout class="QVBoxLayout" name="gravityLayout">
+          <property name="spacing">
+           <number>10</number>
+          </property>
+
+          <!-- Gravity Model -->
+          <item>
+           <layout class="QHBoxLayout" name="h_GravityModel">
+            <item>
+             <layout class="QVBoxLayout" name="v_labels_gravity">
+              <item>
+               <widget class="QLabel" name="label_GravityModel">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Gravity Model</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="desc_GravityModel">
+                <property name="styleSheet">
+                 <string>color: #9aa4b2; font-size: 9px;</string>
+                </property>
+                <property name="text">
+                 <string>Trade-off between accuracy and performance</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxGravityModel">
+              <property name="minimumWidth">
+               <number>200</number>
+              </property>
+              <item>
+               <property name="text">
+                <string>Newtonian (Direct N-body)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Barnes-Hut Approximation</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Hybrid (Auto-switching)</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+
+          <!-- Barnes-Hut Threshold -->
+          <item>
+           <layout class="QHBoxLayout" name="h_BarnesHut">
+            <item>
+             <layout class="QVBoxLayout" name="v_labels_barnesHut">
+              <item>
+               <widget class="QLabel" name="label_BarnesHutThreshold">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Barnes-Hut θ Threshold</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="desc_BarnesHutThreshold">
+                <property name="styleSheet">
+                 <string>color: #9aa4b2; font-size: 9px;</string>
+                </property>
+                <property name="text">
+                 <string>Lower = more accurate, higher = faster (0.3-1.0 typical)</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="h_barnesHut_controls">
+              <item>
+               <widget class="QSlider" name="sliderBarnesHutThreshold">
+                <property name="minimumWidth">
+                 <number>150</number>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>20</number>
+                </property>
+                <property name="value">
+                 <number>5</number>
+                </property>
+                <property name="orientation">
+                 <enum>Qt::Orientation::Horizontal</enum>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="labelBarnesHutThreshold">
+                <property name="minimumSize">
+                 <size>
+                  <width>48</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Monospace</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>0.5</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+
+          <!-- Softening Factor -->
+          <item>
+           <layout class="QHBoxLayout" name="h_Softening">
+            <item>
+             <layout class="QVBoxLayout" name="v_labels_softening">
+              <item>
+               <widget class="QLabel" name="label_SofteningFactor">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Softening Factor (ε)</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="desc_SofteningFactor">
+                <property name="styleSheet">
+                 <string>color: #9aa4b2; font-size: 9px;</string>
+                </property>
+                <property name="text">
+                 <string>Prevents numerical instability at close range</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="h_softening_controls">
+              <item>
+               <widget class="QDoubleSpinBox" name="spinSofteningFactor">
+                <property name="decimals">
+                 <number>0</number>
+                </property>
+                <property name="minimum">
+                 <double>100000000.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>10000000000.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>100000000.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1000000000.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_km">
+                <property name="styleSheet">
+                 <string>color: #9aa4b2;</string>
+                </property>
+                <property name="text">
+                 <string>km</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+
+       <!-- Integration Method Group -->
+       <item>
+        <widget class="QGroupBox" name="groupIntegration">
+         <property name="title">
+          <string>Integration Method</string>
+         </property>
+         <layout class="QVBoxLayout" name="integrationLayout">
+          <property name="spacing">
+           <number>10</number>
+          </property>
+
+          <!-- ODE Solver -->
+          <item>
+           <layout class="QHBoxLayout" name="h_ODESolver">
+            <item>
+             <layout class="QVBoxLayout" name="v_labels_ode">
+              <item>
+               <widget class="QLabel" name="label_ODESolver">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>ODE Solver</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="desc_ODESolver">
+                <property name="styleSheet">
+                 <string>color: #9aa4b2; font-size: 9px;</string>
+                </property>
+                <property name="text">
+                 <string>Numerical integration algorithm</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxODESolver">
+              <property name="minimumWidth">
+               <number>200</number>
+              </property>
+              <item>
+               <property name="text">
+                <string>RKF45 (Adaptive)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>RK4 (Fixed-step)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Euler (Fast, less accurate)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Verlet (Symplectic)</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+
+          <!-- Adaptive Error Tolerance -->
+          <item>
+           <layout class="QHBoxLayout" name="h_AdaptiveError">
+            <item>
+             <layout class="QVBoxLayout" name="v_labels_adaptive">
+              <item>
+               <widget class="QLabel" name="label_AdaptiveError">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Adaptive Error Tolerance</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="desc_AdaptiveError">
+                <property name="styleSheet">
+                 <string>color: #9aa4b2; font-size: 9px;</string>
+                </property>
+                <property name="text">
+                 <string>RKF45 error threshold for step adjustment</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="h_adaptive_controls">
+              <item>
+               <widget class="QDoubleSpinBox" name="spinAdaptiveError">
+                <property name="decimals">
+                 <number>9</number>
+                </property>
+                <property name="minimum">
+                 <double>0.000000001000000</double>
+                </property>
+                <property name="maximum">
+                 <double>0.001000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.000000100000000</double>
+                </property>
+                <property name="value">
+                 <double>0.000001000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_relativeError">
+                <property name="styleSheet">
+                 <string>color: #9aa4b2;</string>
+                </property>
+                <property name="text">
+                 <string>relative error</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+
+       <!-- CUDA Acceleration Group -->
+       <item>
+        <widget class="QGroupBox" name="groupCUDA">
+         <property name="title">
+          <string>CUDA Acceleration</string>
+         </property>
+         <layout class="QVBoxLayout" name="cudaLayout">
+          <property name="spacing">
+           <number>10</number>
+          </property>
+
+          <!-- GPU Device -->
+          <item>
+           <layout class="QHBoxLayout" name="h_GPUDevice">
+            <item>
+             <layout class="QVBoxLayout" name="v_labels_gpu">
+              <item>
+               <widget class="QLabel" name="label_GPUDevice">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>GPU Device</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="desc_GPUDevice">
+                <property name="styleSheet">
+                 <string>color: #9aa4b2; font-size: 9px;</string>
+                </property>
+                <property name="text">
+                 <string>Select CUDA-capable GPU for computation</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxGPUDevice">
+              <property name="minimumWidth">
+               <number>250</number>
+              </property>
+              <property name="currentText">
+               <string>NVIDIA GeForce RTX 4060 (8GB)</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>NVIDIA GeForce RTX 4060 (8GB)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>CPU Fallback (Slow)</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+
+          <!-- Block Size -->
+          <item>
+           <layout class="QHBoxLayout" name="h_BlockSize">
+            <item>
+             <layout class="QVBoxLayout" name="v_labels_blocksize">
+              <item>
+               <widget class="QLabel" name="label_BlockSize">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Block Size</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="desc_BlockSize">
+                <property name="styleSheet">
+                 <string>color: #9aa4b2; font-size: 9px;</string>
+                </property>
+                <property name="text">
+                 <string>CUDA thread block dimension (typically 256 or 512)</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="spinBlockSize">
+              <property name="minimum">
+               <number>32</number>
+              </property>
+              <property name="maximum">
+               <number>1024</number>
+              </property>
+              <property name="singleStep">
+               <number>32</number>
+              </property>
+              <property name="value">
+               <number>256</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+
+          <!-- Double Precision -->
+          <item>
+           <layout class="QHBoxLayout" name="h_DoublePrecision">
+            <item>
+             <layout class="QVBoxLayout" name="v_labels_doubleprecision">
+              <item>
+               <widget class="QLabel" name="label_DoublePrecision">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Enable Double Precision</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="desc_DoublePrecision">
+                <property name="styleSheet">
+                 <string>color: #9aa4b2; font-size: 9px;</string>
+                </property>
+                <property name="text">
+                 <string>Use float64 instead of float32 (slower but more accurate)</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxDoublePrecision">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+
+       <!-- Collision Detection Group -->
+       <item>
+        <widget class="QGroupBox" name="groupCollision">
+         <property name="title">
+          <string>Collision Detection</string>
+         </property>
+         <layout class="QVBoxLayout" name="collisionLayout">
+          <property name="spacing">
+           <number>10</number>
+          </property>
+
+          <!-- Enable Collisions -->
+          <item>
+           <layout class="QHBoxLayout" name="h_EnableCollisions">
+            <item>
+             <layout class="QVBoxLayout" name="v_labels_enablecollisions">
+              <item>
+               <widget class="QLabel" name="label_EnableCollisions">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Enable Collisions</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="desc_EnableCollisions">
+                <property name="styleSheet">
+                 <string>color: #9aa4b2; font-size: 9px;</string>
+                </property>
+                <property name="text">
+                 <string>Detect and respond to spacecraft/body collisions</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBoxEnableCollisions">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+
+          <!-- Detection Method -->
+          <item>
+           <layout class="QHBoxLayout" name="h_DetectionMethod">
+            <item>
+             <layout class="QVBoxLayout" name="v_labels_detectionmethod">
+              <item>
+               <widget class="QLabel" name="label_DetectionMethod">
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Detection Method</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="desc_DetectionMethod">
+                <property name="styleSheet">
+                 <string>color: #9aa4b2; font-size: 9px;</string>
+                </property>
+                <property name="text">
+                 <string>Continuous is more accurate but slower</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboBoxDetectionMethod">
+              <property name="minimumWidth">
+               <number>200</number>
+              </property>
+              <item>
+               <property name="text">
+                <string>Continuous (CCD)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Discrete (Per-frame)</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+
+       <!-- Spacer to push content to top -->
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

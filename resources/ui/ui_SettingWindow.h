@@ -29,8 +29,11 @@ public:
     QPushButton *SettingExit;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
-    QPushButton *RestAll;
-    QPushButton *pushButton_2;
+    QPushButton *resetButton;
+    QPushButton *saveButton;
+    QWidget *horizontalLayoutWidget_2;
+    QHBoxLayout *horizontalLayout_2;
+    QPushButton *cancelButton;
 
     void setupUi(QWidget *SettingWindow)
     {
@@ -57,20 +60,31 @@ public:
         SettingExit->setGeometry(QRect(958, 10, 31, 24));
         horizontalLayoutWidget = new QWidget(frame);
         horizontalLayoutWidget->setObjectName("horizontalLayoutWidget");
-        horizontalLayoutWidget->setGeometry(QRect(830, 600, 166, 41));
+        horizontalLayoutWidget->setGeometry(QRect(830, 590, 166, 51));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        RestAll = new QPushButton(horizontalLayoutWidget);
-        RestAll->setObjectName("RestAll");
-        RestAll->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
+        resetButton = new QPushButton(horizontalLayoutWidget);
+        resetButton->setObjectName("resetButton");
+        resetButton->setCursor(QCursor(Qt::CursorShape::ArrowCursor));
 
-        horizontalLayout->addWidget(RestAll);
+        horizontalLayout->addWidget(resetButton);
 
-        pushButton_2 = new QPushButton(horizontalLayoutWidget);
-        pushButton_2->setObjectName("pushButton_2");
+        saveButton = new QPushButton(horizontalLayoutWidget);
+        saveButton->setObjectName("saveButton");
 
-        horizontalLayout->addWidget(pushButton_2);
+        horizontalLayout->addWidget(saveButton);
+
+        horizontalLayoutWidget_2 = new QWidget(frame);
+        horizontalLayoutWidget_2->setObjectName("horizontalLayoutWidget_2");
+        horizontalLayoutWidget_2->setGeometry(QRect(30, 590, 81, 51));
+        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        cancelButton = new QPushButton(horizontalLayoutWidget_2);
+        cancelButton->setObjectName("cancelButton");
+
+        horizontalLayout_2->addWidget(cancelButton);
 
 
         retranslateUi(SettingWindow);
@@ -84,8 +98,9 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("SettingWindow", "Tab 1", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("SettingWindow", "Tab 2", nullptr));
         SettingExit->setText(QCoreApplication::translate("SettingWindow", "X", nullptr));
-        RestAll->setText(QCoreApplication::translate("SettingWindow", "Reset All", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("SettingWindow", "Save", nullptr));
+        resetButton->setText(QCoreApplication::translate("SettingWindow", "Reset All", nullptr));
+        saveButton->setText(QCoreApplication::translate("SettingWindow", "Save", nullptr));
+        cancelButton->setText(QCoreApplication::translate("SettingWindow", "PushButton", nullptr));
     } // retranslateUi
 
 };

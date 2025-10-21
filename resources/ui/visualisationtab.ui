@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>VisualisationTab</class>
+ <widget class="QWidget" name="VisualisationTab">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Visualization Settings</string>
+  </property>
+  <layout class="QVBoxLayout" name="mainLayout">
+   <item>
+    <widget class="QLabel" name="descriptionLabel">
+     <property name="toolTip">
+      <string>Short description of visualization settings</string>
+     </property>
+     <property name="text">
+      <string>Configure rendering, display and overlay options for the visualizer. Adjust graphics backend, frame limits, and UI overlays below.</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QScrollArea" name="contentScrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>480</width>
+        <height>642</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="scrollAreaLayout">
+       <item>
+        <widget class="QGroupBox" name="graphicsGroupBox">
+         <property name="title">
+          <string>Graphics</string>
+         </property>
+         <layout class="QFormLayout" name="graphicsFormLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="renderingApiLabel">
+            <property name="toolTip">
+             <string>OpenGL backend version</string>
+            </property>
+            <property name="text">
+             <string>Rendering API</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout" name="renderingApiHBox">
+            <item>
+             <spacer name="renderingApiSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QComboBox" name="renderingApiComboBox">
+              <item>
+               <property name="text">
+                <string>OpenGL 4.5 (Modern)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>OpenGL 3.3 (Compatible)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>OpenGL ES (Embedded)</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="vsyncLabel">
+            <property name="toolTip">
+             <string>Synchronize rendering with display refresh</string>
+            </property>
+            <property name="text">
+             <string>VSync</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <layout class="QHBoxLayout" name="vsyncHBox">
+            <item>
+             <spacer name="vsyncSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="vsyncCheckBox">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="targetFpsLabel">
+            <property name="toolTip">
+             <string>Maximum frame rate (0 = unlimited)</string>
+            </property>
+            <property name="text">
+             <string>Target FPS</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <layout class="QHBoxLayout" name="targetFpsHBox">
+            <item>
+             <spacer name="targetFpsSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="targetFpsSpinBox">
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>1000</number>
+              </property>
+              <property name="value">
+               <number>60</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="antiAliasingLabel">
+            <property name="toolTip">
+             <string>Smooth edge rendering (MSAA)</string>
+            </property>
+            <property name="text">
+             <string>Anti-Aliasing</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <layout class="QHBoxLayout" name="antiAliasingHBox">
+            <item>
+             <spacer name="antiAliasingSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QComboBox" name="antiAliasingComboBox">
+              <item>
+               <property name="text">
+                <string>Off</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>2x MSAA</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>4x MSAA</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>8x MSAA</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="displayOptionsGroupBox">
+         <property name="title">
+          <string>Display Options</string>
+         </property>
+         <layout class="QFormLayout" name="displayOptionsFormLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="showTrajectoriesLabel">
+            <property name="toolTip">
+             <string>Render orbital paths</string>
+            </property>
+            <property name="text">
+             <string>Show Trajectories</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout" name="showTrajectoriesHBox">
+            <item>
+             <spacer name="showTrajectoriesSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="showTrajectoriesCheckBox">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="trajectoryLengthLabel">
+            <property name="toolTip">
+             <string>Number of past positions to display</string>
+            </property>
+            <property name="text">
+             <string>Trajectory Length</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <layout class="QHBoxLayout" name="trajectoryLengthHBox">
+            <item>
+             <spacer name="trajectoryLengthSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QSpinBox" name="trajectoryLengthSpinBox">
+              <property name="maximum">
+               <number>10000</number>
+              </property>
+              <property name="value">
+               <number>1000</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="showVelocityVectorsLabel">
+            <property name="toolTip">
+             <string>Draw direction arrows</string>
+            </property>
+            <property name="text">
+             <string>Show Velocity Vectors</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <layout class="QHBoxLayout" name="showVelocityVectorsHBox">
+            <item>
+             <spacer name="showVelocityVectorsSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="showVelocityVectorsCheckBox">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="showGridLabel">
+            <property name="toolTip">
+             <string>Display reference grid</string>
+            </property>
+            <property name="text">
+             <string>Show Grid</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <layout class="QHBoxLayout" name="showGridHBox">
+            <item>
+             <spacer name="showGridSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="showGridCheckBox">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="cameraSmoothingLabel">
+            <property name="toolTip">
+             <string>Smooth camera movements</string>
+            </property>
+            <property name="text">
+             <string>Camera Smoothing</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <layout class="QHBoxLayout" name="cameraSmoothingHBox">
+            <item>
+             <spacer name="cameraSmoothingSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cameraSmoothingCheckBox">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="hudGroupBox">
+         <property name="title">
+          <string>HUD &amp; Overlays</string>
+         </property>
+         <layout class="QFormLayout" name="hudFormLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="showHudLabel">
+            <property name="toolTip">
+             <string>Display heads-up telemetry overlay</string>
+            </property>
+            <property name="text">
+             <string>Show HUD</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout" name="showHudHBox">
+            <item>
+             <spacer name="showHudSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="showHudCheckBox">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="hudFontSizeLabel">
+            <property name="toolTip">
+             <string>Text size for overlays</string>
+            </property>
+            <property name="text">
+             <string>HUD Font Size</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <layout class="QHBoxLayout" name="hudFontSizeHBox">
+            <item>
+             <spacer name="hudFontSizeSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QComboBox" name="hudFontSizeComboBox">
+              <item>
+               <property name="text">
+                <string>Small</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Medium</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Large</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="showPerfStatsLabel">
+            <property name="toolTip">
+             <string>Display FPS, GPU load, etc.</string>
+            </property>
+            <property name="text">
+             <string>Show Performance Stats</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <layout class="QHBoxLayout" name="showPerfStatsHBox">
+            <item>
+             <spacer name="showPerfStatsSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="showPerfStatsCheckBox">
+              <property name="text">
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="themeGroupBox">
+         <property name="title">
+          <string>Theme</string>
+         </property>
+         <layout class="QFormLayout" name="themeFormLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="uiThemeLabel">
+            <property name="toolTip">
+             <string>Interface color scheme</string>
+            </property>
+            <property name="text">
+             <string>UI Theme</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout" name="uiThemeHBox">
+            <item>
+             <spacer name="uiThemeSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QComboBox" name="uiThemeComboBox">
+              <item>
+               <property name="text">
+                <string>Dark (Default)</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Light</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>High Contrast</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Aerospace Blue</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="innerVerticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

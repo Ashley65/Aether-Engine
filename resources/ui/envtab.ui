@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>EnvTab</class>
+    <widget class="QWidget" name="EnvTab">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>550</width>
+                <height>500</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>Environment Settings</string>
+        </property>
+        <layout class="QVBoxLayout" name="mainLayout">
+            <item>
+                <widget class="QGroupBox" name="celestialBodiesGroup">
+                    <property name="title">
+                        <string>Celestial Bodies</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="celestialBodiesLayout">
+                        <item>
+                            <layout class="QHBoxLayout" name="initialBodyCountRow">
+                                <item>
+                                    <layout class="QVBoxLayout" name="initialBodyCountLabelLayout">
+                                        <item>
+                                            <widget class="QLabel" name="initialBodyCountLabel">
+                                                <property name="text">
+                                                    <string>Initial Body Count</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <item>
+                                            <widget class="QLabel" name="initialBodyCountDescription">
+                                                <property name="text">
+                                                    <string>Number of gravitational bodies at mission start</string>
+                                                </property>
+                                                <property name="styleSheet">
+                                                    <string>color: gray; font-size: 10pt;</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                    </layout>
+                                </item>
+                                <item>
+                                    <spacer name="initialBodyCountSpacer">
+                                        <property name="orientation">
+                                            <enum>Qt::Horizontal</enum>
+                                        </property>
+                                        <property name="sizeHint" stdset="0">
+                                            <size>
+                                                <width>40</width>
+                                                <height>20</height>
+                                            </size>
+                                        </property>
+                                    </spacer>
+                                </item>
+                                <item>
+                                    <widget class="QSpinBox" name="initialBodyCountSpinBox">
+                                        <property name="value">
+                                            <number>9</number>
+                                        </property>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </item>
+                        <item>
+                            <layout class="QHBoxLayout" name="loadSolarSystemRow">
+                                <item>
+                                    <layout class="QVBoxLayout" name="loadSolarSystemLabelLayout">
+                                        <item>
+                                            <widget class="QLabel" name="loadSolarSystemLabel">
+                                                <property name="text">
+                                                    <string>Load Solar System</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <item>
+                                            <widget class="QLabel" name="loadSolarSystemDescription">
+                                                <property name="text">
+                                                    <string>Pre-populate with Sol system bodies</string>
+                                                </property>
+                                                <property name="styleSheet">
+                                                    <string>color: gray; font-size: 10pt;</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                    </layout>
+                                </item>
+                                <item>
+                                    <spacer name="loadSolarSystemSpacer">
+                                        <property name="orientation">
+                                            <enum>Qt::Horizontal</enum>
+                                        </property>
+                                        <property name="sizeHint" stdset="0">
+                                            <size>
+                                                <width>40</width>
+                                                <height>20</height>
+                                            </size>
+                                        </property>
+                                    </spacer>
+                                </item>
+                                <item>
+                                    <widget class="QCheckBox" name="loadSolarSystemCheckBox">
+                                        <property name="checked">
+                                            <bool>true</bool>
+                                        </property>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </item>
+                        <item>
+                            <layout class="QHBoxLayout" name="bodyDataSourceRow">
+                                <item>
+                                    <layout class="QVBoxLayout" name="bodyDataSourceLabelLayout">
+                                        <item>
+                                            <widget class="QLabel" name="bodyDataSourceLabel">
+                                                <property name="text">
+                                                    <string>Body Data Source</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <item>
+                                            <widget class="QLabel" name="bodyDataSourceDescription">
+                                                <property name="text">
+                                                    <string>Ephemeris data for real celestial positions</string>
+                                                </property>
+                                                <property name="styleSheet">
+                                                    <string>color: gray; font-size: 10pt;</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                    </layout>
+                                </item>
+                                <item>
+                                    <spacer name="bodyDataSourceSpacer">
+                                        <property name="orientation">
+                                            <enum>Qt::Horizontal</enum>
+                                        </property>
+                                        <property name="sizeHint" stdset="0">
+                                            <size>
+                                                <width>40</width>
+                                                <height>20</height>
+                                            </size>
+                                        </property>
+                                    </spacer>
+                                </item>
+                                <item>
+                                    <widget class="QComboBox" name="bodyDataSourceComboBox">
+                                        <item>
+                                            <property name="text">
+                                                <string>NASA JPL Horizons</string>
+                                            </property>
+                                        </item>
+                                        <item>
+                                            <property name="text">
+                                                <string>Custom/Procedural</string>
+                                            </property>
+                                        </item>
+                                        <item>
+                                            <property name="text">
+                                                <string>Saved Configuration</string>
+                                            </property>
+                                        </item>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+            <item>
+                <widget class="QGroupBox" name="environmentalHazardsGroup">
+                    <property name="title">
+                        <string>Environmental Hazards</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="environmentalHazardsLayout">
+                        <item>
+                            <layout class="QHBoxLayout" name="enableRadiationRow">
+                                <item>
+                                    <layout class="QVBoxLayout" name="enableRadiationLabelLayout">
+                                        <item>
+                                            <widget class="QLabel" name="enableRadiationLabel">
+                                                <property name="text">
+                                                    <string>Enable Radiation</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <item>
+                                            <widget class="QLabel" name="enableRadiationDescription">
+                                                <property name="text">
+                                                    <string>Simulate solar radiation effects</string>
+                                                </property>
+                                                <property name="styleSheet">
+                                                    <string>color: gray; font-size: 10pt;</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                    </layout>
+                                </item>
+                                <item>
+                                    <spacer name="enableRadiationSpacer">
+                                        <property name="orientation">
+                                            <enum>Qt::Horizontal</enum>
+                                        </property>
+                                        <property name="sizeHint" stdset="0">
+                                            <size>
+                                                <width>40</width>
+                                                <height>20</height>
+                                            </size>
+                                        </property>
+                                    </spacer>
+                                </item>
+                                <item>
+                                    <widget class="QCheckBox" name="enableRadiationCheckBox"/>
+                                </item>
+                            </layout>
+                        </item>
+                        <item>
+                            <layout class="QHBoxLayout" name="enableMicrometeoroidsRow">
+                                <item>
+                                    <layout class="QVBoxLayout" name="enableMicrometeoroidsLabelLayout">
+                                        <item>
+                                            <widget class="QLabel" name="enableMicrometeoroidsLabel">
+                                                <property name="text">
+                                                    <string>Enable Micrometeoroids</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <item>
+                                            <widget class="QLabel" name="enableMicrometeoroidsDescription">
+                                                <property name="text">
+                                                    <string>Random small object collisions</string>
+                                                </property>
+                                                <property name="styleSheet">
+                                                    <string>color: gray; font-size: 10pt;</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                    </layout>
+                                </item>
+                                <item>
+                                    <spacer name="enableMicrometeoro idsSpacer">
+                                        <property name="orientation">
+                                            <enum>Qt::Horizontal</enum>
+                                        </property>
+                                        <property name="sizeHint" stdset="0">
+                                            <size>
+                                                <width>40</width>
+                                                <height>20</height>
+                                            </size>
+                                        </property>
+                                    </spacer>
+                                </item>
+                                <item>
+                                    <widget class="QCheckBox" name="enableMicrometeoroidsCheckBox"/>
+                                </item>
+                            </layout>
+                        </item>
+                        <item>
+                            <layout class="QHBoxLayout" name="hazardIntensityRow">
+                                <item>
+                                    <layout class="QVBoxLayout" name="hazardIntensityLabelLayout">
+                                        <item>
+                                            <widget class="QLabel" name="hazardIntensityLabel">
+                                                <property name="text">
+                                                    <string>Hazard Intensity</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <item>
+                                            <widget class="QLabel" name="hazardIntensityDescription">
+                                                <property name="text">
+                                                    <string>Frequency and severity of environmental events</string>
+                                                </property>
+                                                <property name="styleSheet">
+                                                    <string>color: gray; font-size: 10pt;</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                    </layout>
+                                </item>
+                                <item>
+                                    <spacer name="hazardIntensitySpacer">
+                                        <property name="orientation">
+                                            <enum>Qt::Horizontal</enum>
+                                        </property>
+                                        <property name="sizeHint" stdset="0">
+                                            <size>
+                                                <width>40</width>
+                                                <height>20</height>
+                                            </size>
+                                        </property>
+                                    </spacer>
+                                </item>
+                                <item>
+                                    <widget class="QWidget" name="hazardIntensityWidget" native="true">
+                                        <layout class="QHBoxLayout" name="hazardIntensityWidgetLayout">
+                                            <property name="leftMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <property name="topMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <property name="rightMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <property name="bottomMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <item>
+                                                <widget class="QLabel" name="lowLabel">
+                                                    <property name="text">
+                                                        <string>Low</string>
+                                                    </property>
+                                                    <property name="styleSheet">
+                                                        <string>color: gray;</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QSlider" name="hazardIntensitySlider">
+                                                    <property name="minimum">
+                                                        <number>1</number>
+                                                    </property>
+                                                    <property name="maximum">
+                                                        <number>10</number>
+                                                    </property>
+                                                    <property name="value">
+                                                        <number>5</number>
+                                                    </property>
+                                                    <property name="orientation">
+                                                        <enum>Qt::Horizontal</enum>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QLabel" name="highLabel">
+                                                    <property name="text">
+                                                        <string>High</string>
+                                                    </property>
+                                                    <property name="styleSheet">
+                                                        <string>color: gray;</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+            <item>
+                <widget class="QGroupBox" name="atmosphericGroup">
+                    <property name="title">
+                        <string>Atmospheric (Drone Mode)</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="atmosphericLayout">
+                        <item>
+                            <layout class="QHBoxLayout" name="enableWindRow">
+                                <item>
+                                    <layout class="QVBoxLayout" name="enableWindLabelLayout">
+                                        <item>
+                                            <widget class="QLabel" name="enableWindLabel">
+                                                <property name="text">
+                                                    <string>Enable Wind</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <item>
+                                            <widget class="QLabel" name="enableWindDescription">
+                                                <property name="text">
+                                                    <string>Atmospheric disturbances for drone simulation</string>
+                                                </property>
+                                                <property name="styleSheet">
+                                                    <string>color: gray; font-size: 10pt;</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                    </layout>
+                                </item>
+                                <item>
+                                    <spacer name="enableWindSpacer">
+                                        <property name="orientation">
+                                            <enum>Qt::Horizontal</enum>
+                                        </property>
+                                        <property name="sizeHint" stdset="0">
+                                            <size>
+                                                <width>40</width>
+                                                <height>20</height>
+                                            </size>
+                                        </property>
+                                    </spacer>
+                                </item>
+                                <item>
+                                    <widget class="QCheckBox" name="enableWindCheckBox"/>
+                                </item>
+                            </layout>
+                        </item>
+                        <item>
+                            <layout class="QHBoxLayout" name="windSpeedRangeRow">
+                                <item>
+                                    <layout class="QVBoxLayout" name="windSpeedRangeLabelLayout">
+                                        <item>
+                                            <widget class="QLabel" name="windSpeedRangeLabel">
+                                                <property name="text">
+                                                    <string>Wind Speed Range</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <item>
+                                            <widget class="QLabel" name="windSpeedRangeDescription">
+                                                <property name="text">
+                                                    <string>Random wind velocity</string>
+                                                </property>
+                                                <property name="styleSheet">
+                                                    <string>color: gray; font-size: 10pt;</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                    </layout>
+                                </item>
+                                <item>
+                                    <spacer name="windSpeedRangeSpacer">
+                                        <property name="orientation">
+                                            <enum>Qt::Horizontal</enum>
+                                        </property>
+                                        <property name="sizeHint" stdset="0">
+                                            <size>
+                                                <width>40</width>
+                                                <height>20</height>
+                                            </size>
+                                        </property>
+                                    </spacer>
+                                </item>
+                                <item>
+                                    <widget class="QWidget" name="windSpeedRangeWidget" native="true">
+                                        <layout class="QHBoxLayout" name="windSpeedRangeWidgetLayout">
+                                            <property name="leftMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <property name="topMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <property name="rightMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <property name="bottomMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <item>
+                                                <widget class="QSpinBox" name="windSpeedMinSpinBox"/>
+                                            </item>
+                                            <item>
+                                                <widget class="QLabel" name="toLabel">
+                                                    <property name="text">
+                                                        <string>to</string>
+                                                    </property>
+                                                    <property name="styleSheet">
+                                                        <string>color: gray;</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QSpinBox" name="windSpeedMaxSpinBox">
+                                                    <property name="value">
+                                                        <number>20</number>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QLabel" name="msLabel">
+                                                    <property name="text">
+                                                        <string>m/s</string>
+                                                    </property>
+                                                    <property name="styleSheet">
+                                                        <string>color: gray;</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </item>
+                        <item>
+                            <layout class="QHBoxLayout" name="gravityRow">
+                                <item>
+                                    <layout class="QVBoxLayout" name="gravityLabelLayout">
+                                        <item>
+                                            <widget class="QLabel" name="gravityLabel">
+                                                <property name="text">
+                                                    <string>Gravity (Earth)</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <item>
+                                            <widget class="QLabel" name="gravityDescription">
+                                                <property name="text">
+                                                    <string>Override gravitational acceleration</string>
+                                                </property>
+                                                <property name="styleSheet">
+                                                    <string>color: gray; font-size: 10pt;</string>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                    </layout>
+                                </item>
+                                <item>
+                                    <spacer name="gravitySpacer">
+                                        <property name="orientation">
+                                            <enum>Qt::Horizontal</enum>
+                                        </property>
+                                        <property name="sizeHint" stdset="0">
+                                            <size>
+                                                <width>40</width>
+                                                <height>20</height>
+                                            </size>
+                                        </property>
+                                    </spacer>
+                                </item>
+                                <item>
+                                    <widget class="QWidget" name="gravityWidget" native="true">
+                                        <layout class="QHBoxLayout" name="gravityWidgetLayout">
+                                            <property name="leftMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <property name="topMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <property name="rightMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <property name="bottomMargin">
+                                                <number>0</number>
+                                            </property>
+                                            <item>
+                                                <widget class="QDoubleSpinBox" name="gravityDoubleSpinBox">
+                                                    <property name="singleStep">
+                                                        <double>0.1</double>
+                                                    </property>
+                                                    <property name="value">
+                                                        <double>9.81</double>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                            <item>
+                                                <widget class="QLabel" name="ms2Label">
+                                                    <property name="text">
+                                                        <string>m/s²</string>
+                                                    </property>
+                                                    <property name="styleSheet">
+                                                        <string>color: gray;</string>
+                                                    </property>
+                                                </widget>
+                                            </item>
+                                        </layout>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+            <item>
+                <spacer name="verticalSpacer">
+                    <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                        <size>
+                            <width>20</width>
+                            <height>40</height>
+                        </size>
+                    </property>
+                </spacer>
+            </item>
+        </layout>
+    </widget>
+    <resources/>
+    <connections/>
+</ui>
+

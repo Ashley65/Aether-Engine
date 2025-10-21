@@ -1,0 +1,1889 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>droneTab</class>
+    <widget class="QWidget" name="droneTab">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>600</width>
+                <height>600</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>DroneSettingsTab</string>
+        </property>
+        <layout class="QVBoxLayout" name="mainLayout">
+            <property name="leftMargin">
+                <number>0</number>
+            </property>
+            <property name="topMargin">
+                <number>0</number>
+            </property>
+            <property name="rightMargin">
+                <number>0</number>
+            </property>
+            <property name="bottomMargin">
+                <number>0</number>
+            </property>
+            <item>
+                <widget class="QScrollArea" name="scrollArea">
+                    <property name="widgetResizable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="frameShape">
+                        <enum>QFrame::NoFrame</enum>
+                    </property>
+                    <widget class="QWidget" name="scrollAreaWidgetContents">
+                        <layout class="QVBoxLayout" name="scrollContentLayout">
+                            <property name="spacing">
+                                <number>20</number>
+                            </property>
+                            <property name="leftMargin">
+                                <number>30</number>
+                            </property>
+                            <property name="topMargin">
+                                <number>10</number>
+                            </property>
+                            <property name="rightMargin">
+                                <number>30</number>
+                            </property>
+                            <property name="bottomMargin">
+                                <number>20</number>
+                            </property>
+
+                            <!-- Info Banner -->
+                            <item>
+                                <widget class="QFrame" name="infoFrame">
+                                    <property name="styleSheet">
+                                        <string notr="true">#infoFrame {
+                                            background-color: rgba(59, 130, 246, 0.1);
+                                            border: 1px solid #2563eb;
+                                            border-radius: 8px;
+                                            }</string>
+                                    </property>
+                                    <property name="frameShape">
+                                        <enum>QFrame::StyledPanel</enum>
+                                    </property>
+                                    <property name="frameShadow">
+                                        <enum>QFrame::Raised</enum>
+                                    </property>
+                                    <layout class="QHBoxLayout" name="horizontalLayout">
+                                        <item>
+                                            <widget class="QLabel" name="iconLabel">
+                                                <property name="sizePolicy">
+                                                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="text">
+                                                    <string>ℹ️</string>
+                                                </property>
+                                                <property name="alignment">
+                                                    <set>Qt::AlignTop</set>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <item>
+                                            <layout class="QVBoxLayout" name="warningTextLayout">
+                                                <item>
+                                                    <widget class="QLabel" name="warningTitleLabel">
+                                                        <property name="text">
+                                                            <string>Atmospheric Flight Dynamics</string>
+                                                        </property>
+                                                        <property name="font">
+                                                            <font>
+                                                                <weight>75</weight>
+                                                                <bold>true</bold>
+                                                            </font>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QLabel" name="warningDescriptionLabel">
+                                                        <property name="text">
+                                                            <string>These settings apply when simulating drones in Earth's atmosphere. Different physics models are used compared to space.</string>
+                                                        </property>
+                                                        <property name="wordWrap">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+
+                            <!-- Drone Platform Group -->
+                            <item>
+                                <widget class="QGroupBox" name="groupDronePlatform">
+                                    <property name="title">
+                                        <string>Drone Platform</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="platformLayout">
+                                        <property name="spacing">
+                                            <number>10</number>
+                                        </property>
+
+                                        <!-- Drone Type -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_DroneType">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_dronetype">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_DroneType">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Drone Type</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_DroneType">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Select the drone configuration to simulate</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <widget class="QComboBox" name="comboBoxDroneType">
+                                                        <property name="minimumWidth">
+                                                            <number>220</number>
+                                                        </property>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Quadcopter (X configuration)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Quadcopter (+ configuration)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Hexacopter</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Octocopter</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Fixed-Wing</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>VTOL (Vertical Takeoff)</string>
+                                                            </property>
+                                                        </item>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <!-- Mass -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_Mass">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_mass">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_Mass">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Mass</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_Mass">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Total drone mass including payload</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_mass_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinMass">
+                                                                <property name="decimals">
+                                                                    <number>2</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>0.100000000000000</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>50.000000000000000</double>
+                                                                </property>
+                                                                <property name="singleStep">
+                                                                    <double>0.100000000000000</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>1.500000000000000</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_kg">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>kg</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <!-- Arm Length -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_ArmLength">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_armlength">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_ArmLength">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Arm Length</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_ArmLength">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Distance from center to motor (for multirotors)</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_armlength_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinArmLength">
+                                                                <property name="decimals">
+                                                                    <number>3</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>0.050000000000000</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>1.000000000000000</double>
+                                                                </property>
+                                                                <property name="singleStep">
+                                                                    <double>0.010000000000000</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>0.230000000000000</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_meters1">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>meters</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+
+                            <!-- Aerodynamics Group -->
+                            <item>
+                                <widget class="QGroupBox" name="groupAerodynamics">
+                                    <property name="title">
+                                        <string>Aerodynamics</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="aeroLayout">
+                                        <property name="spacing">
+                                            <number>10</number>
+                                        </property>
+
+                                        <!-- Enable Drag -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_EnableDrag">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_drag">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_EnableDrag">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Enable Drag</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_EnableDrag">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Simulate air resistance (velocity-dependent)</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <widget class="QCheckBox" name="checkBoxEnableDrag">
+                                                        <property name="text">
+                                                            <string/>
+                                                        </property>
+                                                        <property name="checked">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <!-- Drag Coefficient -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_DragCoeff">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_dragcoeff">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_DragCoeff">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Drag Coefficient</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_DragCoeff">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Aerodynamic drag factor (Cd)</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_dragcoeff_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinDragCoeff">
+                                                                <property name="decimals">
+                                                                    <number>3</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>0.100000000000000</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>2.000000000000000</double>
+                                                                </property>
+                                                                <property name="singleStep">
+                                                                    <double>0.010000000000000</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>0.470000000000000</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_unitless">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>(unitless)</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <!-- Ground Effect -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_GroundEffect">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_groundeffect">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_GroundEffect">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Enable Ground Effect</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_GroundEffect">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Increased lift near ground surface</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <widget class="QCheckBox" name="checkBoxGroundEffect">
+                                                        <property name="text">
+                                                            <string/>
+                                                        </property>
+                                                        <property name="checked">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+
+                            <!-- Propulsion System Group -->
+                            <item>
+                                <widget class="QGroupBox" name="groupPropulsion">
+                                    <property name="title">
+                                        <string>Propulsion System</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="propulsionLayout">
+                                        <property name="spacing">
+                                            <number>10</number>
+                                        </property>
+
+                                        <!-- Number of Motors -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_NumMotors">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_nummotors">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_NumMotors">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Number of Motors</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_NumMotors">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Total motor count for thrust generation</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <widget class="QComboBox" name="comboBoxNumMotors">
+                                                        <property name="minimumWidth">
+                                                            <number>150</number>
+                                                        </property>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>4 (Quadcopter)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>6 (Hexacopter)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>8 (Octocopter)</string>
+                                                            </property>
+                                                        </item>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <!-- Max Thrust per Motor -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_MaxThrust">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_maxthrust">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_MaxThrust">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Max Thrust per Motor</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_MaxThrust">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Maximum thrust output per motor</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_maxthrust_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinMaxThrust">
+                                                                <property name="decimals">
+                                                                    <number>2</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>0.500000000000000</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>50.000000000000000</double>
+                                                                </property>
+                                                                <property name="singleStep">
+                                                                    <double>0.100000000000000</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>6.500000000000000</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_newtons">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Newtons</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <!-- Motor Time Constant -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_MotorTimeConstant">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_motortimeconstant">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_MotorTimeConstant">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Motor Time Constant</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_MotorTimeConstant">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Thrust response time (τ)</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_motortimeconstant_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinMotorTimeConstant">
+                                                                <property name="decimals">
+                                                                    <number>4</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>0.001000000000000</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>0.100000000000000</double>
+                                                                </property>
+                                                                <property name="singleStep">
+                                                                    <double>0.001000000000000</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>0.015000000000000</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_seconds1">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>seconds</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+
+                            <!-- Environmental Disturbances Group -->
+                            <item>
+                                <widget class="QGroupBox" name="groupEnvironmentalDisturbances">
+                                    <property name="title">
+                                        <string>Environmental Disturbances</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="environmentalLayout">
+                                        <property name="spacing">
+                                            <number>10</number>
+                                        </property>
+
+                                        <!-- Wind Model -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_WindModel">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_windmodel">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_WindModel">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Wind Model</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_WindModel">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Type of wind simulation</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <widget class="QComboBox" name="comboBoxWindModel">
+                                                        <property name="minimumWidth">
+                                                            <number>200</number>
+                                                        </property>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>None (Calm)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Constant Wind</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Turbulent (Dryden Model)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Gust (Random Bursts)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Realistic (Combined)</string>
+                                                            </property>
+                                                        </item>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <!-- Wind Speed -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_WindSpeed">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_windspeed">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_WindSpeed">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Wind Speed</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_WindSpeed">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Base wind velocity</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_windspeed_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinWindSpeed">
+                                                                <property name="decimals">
+                                                                    <number>1</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>0.000000000000000</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>50.000000000000000</double>
+                                                                </property>
+                                                                <property name="singleStep">
+                                                                    <double>0.500000000000000</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>5.000000000000000</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_ms">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>m/s</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <!-- Turbulence Intensity Slider -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_TurbulenceIntensity">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_turbulence">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_TurbulenceIntensity">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Turbulence Intensity</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_TurbulenceIntensity">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Strength of random wind fluctuations</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_turbulence_controls">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_low">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Low</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QSlider" name="sliderTurbulenceIntensity">
+                                                                <property name="minimumWidth">
+                                                                    <number>120</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <number>0</number>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <number>10</number>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <number>3</number>
+                                                                </property>
+                                                                <property name="orientation">
+                                                                    <enum>Qt::Orientation::Horizontal</enum>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_high">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2; font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>High</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+
+                            <!-- Battery & Power Group -->
+                            <item>
+                                <widget class="QGroupBox" name="groupBattery">
+                                    <property name="title">
+                                        <string>Battery &amp; Power</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="batteryLayout">
+                                        <property name="spacing">
+                                            <number>10</number>
+                                        </property>
+
+                                        <!-- Battery Capacity -->
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_BatteryCapacity">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_batterycapacity">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_BatteryCapacity">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Battery Capacity</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_BatteryCapacity">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Total charge capacity of the battery</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_batterycapacity_controls">
+                                                        <item>
+                                                            <widget class="QSpinBox" name="spinBatteryCapacity">
+                                                                <property name="minimumWidth">
+                                                                    <number>100</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <number>500</number>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <number>30000</number>
+                                                                </property>
+                                                                <property name="singleStep">
+                                                                    <number>100</number>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <number>5000</number>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_mah">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>mAh</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_BatteryVoltage">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_batteryvoltage">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_BatteryVoltage">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Nominal Voltage</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_BatteryVoltage">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>e.g., 11.1V (3S), 14.8V (4S), 22.2V (6S)</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_batteryvoltage_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinBatteryVoltage">
+                                                                <property name="decimals">
+                                                                    <number>1</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>3.700000000000000</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>50.000000000000000</double>
+                                                                </property>
+                                                                <property name="singleStep">
+                                                                    <double>0.100000000000000</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>14.800000000000001</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_volts">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Volts</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_HoverThrottle">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_hoverthrottle">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_HoverThrottle">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Hover Throttle</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_HoverThrottle">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Throttle percentage required to hover</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_hoverthrottle_controls">
+                                                        <item>
+                                                            <widget class="QSpinBox" name="spinHoverThrottle">
+                                                                <property name="minimum">
+                                                                    <number>10</number>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <number>90</number>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <number>50</number>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_percent1">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>%</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_EnableBatteryDrain">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_batterydrain">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_EnableBatteryDrain">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Enable Battery Drain</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_EnableBatteryDrain">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Simulate battery consumption based on thrust</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <widget class="QCheckBox" name="checkBoxEnableBatteryDrain">
+                                                        <property name="text">
+                                                            <string/>
+                                                        </property>
+                                                        <property name="checked">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_LowBatteryWarning">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_lowbattery">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_LowBatteryWarning">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Low Battery Warning</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_LowBatteryWarning">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Voltage level to trigger warning</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_lowbattery_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinLowBatteryWarning">
+                                                                <property name="decimals">
+                                                                    <number>1</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>3.0</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>4.0</double>
+                                                                </property>
+                                                                <property name="singleStep">
+                                                                    <double>0.1</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>3.5</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_voltscell">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Volts / cell</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+
+                            <item>
+                                <widget class="QGroupBox" name="groupFlightDynamics">
+                                    <property name="title">
+                                        <string>Flight Dynamics</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="flightDynamicsLayout">
+                                        <property name="spacing">
+                                            <number>10</number>
+                                        </property>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_MaxRollPitch">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_maxrollpitch">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_MaxRollPitch">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Max Roll/Pitch Angle</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_MaxRollPitch">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Safety limit for attitude angles</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_maxrollpitch_controls">
+                                                        <item>
+                                                            <widget class="QSpinBox" name="spinMaxRollPitch">
+                                                                <property name="minimum">
+                                                                    <number>10</number>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <number>60</number>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <number>35</number>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_degrees1">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>degrees</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_MaxYawRate">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_maxyawrate">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_MaxYawRate">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Max Yaw Rate</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_MaxYawRate">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Maximum rotational speed around Z-axis</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_maxyawrate_controls">
+                                                        <item>
+                                                            <widget class="QSpinBox" name="spinMaxYawRate">
+                                                                <property name="minimum">
+                                                                    <number>30</number>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <number>360</number>
+                                                                </property>
+                                                                <property name="singleStep">
+                                                                    <number>10</number>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <number>120</number>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_degsec1">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>deg/s</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_MaxClimbRate">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_maxclimbrate">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_MaxClimbRate">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Max Climb Rate</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_MaxClimbRate">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Maximum vertical ascent speed</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_maxclimbrate_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinMaxClimbRate">
+                                                                <property name="decimals">
+                                                                    <number>1</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>1.0</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>20.0</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>5.0</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_ms1">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>m/s</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_MaxDescentRate">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_maxdescentrate">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_MaxDescentRate">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Max Descent Rate</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_MaxDescentRate">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Maximum vertical descent speed</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_maxdescentrate_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinMaxDescentRate">
+                                                                <property name="decimals">
+                                                                    <number>1</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>0.5</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>10.0</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>3.0</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_ms2">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>m/s</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_MaxHorizSpeed">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_maxhorizspeed">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_MaxHorizSpeed">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Max Horizontal Speed</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_MaxHorizSpeed">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Maximum speed in X/Y plane</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_maxhorizspeed_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinMaxHorizSpeed">
+                                                                <property name="decimals">
+                                                                    <number>1</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>1.0</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>40.0</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>15.0</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_ms3">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>m/s</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+
+                            <item>
+                                <widget class="QGroupBox" name="groupSensors">
+                                    <property name="title">
+                                        <string>Drone-Specific Sensors</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="sensorsLayout">
+                                        <property name="spacing">
+                                            <number>10</number>
+                                        </property>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_ImuRate">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_imurate">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_ImuRate">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>IMU Update Rate</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_ImuRate">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Frequency of gyro/accelerometer readings</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <widget class="QComboBox" name="comboBoxImuRate">
+                                                        <property name="minimumWidth">
+                                                            <number>150</number>
+                                                        </property>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>250 Hz</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>500 Hz</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>1 kHz</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>2 kHz</string>
+                                                            </property>
+                                                        </item>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_BaroNoise">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_baronoise">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_BaroNoise">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Barometer Noise</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_BaroNoise">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Altitude uncertainty (Std. Deviation)</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_baronoise_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinBaroNoise">
+                                                                <property name="decimals">
+                                                                    <number>2</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>0.01</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>2.00</double>
+                                                                </property>
+                                                                <property name="singleStep">
+                                                                    <double>0.01</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>0.15</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_meters2">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>meters</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_GpsRate">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_gpsrate">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_GpsRate">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>GPS Update Rate</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_GpsRate">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Frequency of GPS position fixes</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <widget class="QComboBox" name="comboBoxGpsRate">
+                                                        <property name="minimumWidth">
+                                                            <number>150</number>
+                                                        </property>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>1 Hz</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>5 Hz</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>10 Hz</string>
+                                                            </property>
+                                                        </item>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_GpsNoise">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_gpsnoise">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_GpsNoise">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>GPS Position Noise</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_GpsNoise">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Position uncertainty (Std. Deviation)</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="h_gpsnoise_controls">
+                                                        <item>
+                                                            <widget class="QDoubleSpinBox" name="spinGpsNoise">
+                                                                <property name="decimals">
+                                                                    <number>2</number>
+                                                                </property>
+                                                                <property name="minimum">
+                                                                    <double>0.10</double>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <double>5.00</double>
+                                                                </property>
+                                                                <property name="singleStep">
+                                                                    <double>0.10</double>
+                                                                </property>
+                                                                <property name="value">
+                                                                    <double>0.50</double>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="label_meters3">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>meters</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+
+                                        <item>
+                                            <layout class="QHBoxLayout" name="h_EnableMagnetometer">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="v_labels_magnetometer">
+                                                        <item>
+                                                            <widget class="QLabel" name="label_EnableMagnetometer">
+                                                                <property name="font">
+                                                                    <font>
+                                                                        <pointsize>10</pointsize>
+                                                                        <bold>true</bold>
+                                                                    </font>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Enable Magnetometer</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="desc_EnableMagnetometer">
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9aa4b2;
+                                                                        font-size: 9px;</string>
+                                                                </property>
+                                                                <property name="text">
+                                                                    <string>Simulate compass for heading estimation</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <widget class="QCheckBox" name="checkBoxEnableMagnetometer">
+                                                        <property name="text">
+                                                            <string/>
+                                                        </property>
+                                                        <property name="checked">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+
+                            <item>
+                                <spacer name="verticalSpacer">
+                                    <property name="orientation">
+                                        <enum>Qt::Orientation::Vertical</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                        <size>
+                                            <width>20</width>
+                                            <height>40</height>
+                                        </size>
+                                    </property>
+                                </spacer>
+                            </item>
+
+                        </layout>
+                    </widget>
+                </widget>
+            </item>
+        </layout>
+    </widget>
+    <resources/>
+    <connections/>
+</ui>

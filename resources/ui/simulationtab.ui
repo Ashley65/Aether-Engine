@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SimulationTab</class>
+ <widget class="QWidget" name="SimulationTab">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>520</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>SimulationTab</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupSimulationBehavior">
+     <property name="title">
+      <string>Simulation Behavior</string>
+     </property>
+     <layout class="QVBoxLayout" name="vb_sim_behavior">
+      <item>
+       <layout class="QHBoxLayout" name="h_operatingMode">
+        <item>
+         <layout class="QVBoxLayout" name="v_labels_opMode">
+          <item>
+           <widget class="QLabel" name="label_opMode">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Operating Mode</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="desc_opMode">
+            <property name="styleSheet">
+             <string>color: #9aa4b2; font-size: 10px;</string>
+            </property>
+            <property name="text">
+             <string>Choose between pure simulation, hardware testing, or hybrid</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboOperatingMode">
+          <item>
+           <property name="text">
+            <string>Pure Simulation</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Hardware-in-the-Loop (HIL)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Hardware Testing</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="h_timeStep">
+        <item>
+         <layout class="QVBoxLayout" name="v_labels_timeStep">
+          <item>
+           <widget class="QLabel" name="label_timeStep">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Time Step</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="desc_timeStep">
+            <property name="styleSheet">
+             <string>color: #9aa4b2; font-size: 10px;</string>
+            </property>
+            <property name="text">
+             <string>Fixed simulation time step (smaller = more accurate, slower)</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="spinTimeStep">
+          <property name="suffix">
+           <string> s</string>
+          </property>
+          <property name="decimals">
+           <number>3</number>
+          </property>
+          <property name="minimum">
+           <double>0.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>10.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.001000000000000</double>
+          </property>
+          <property name="value">
+           <double>0.016000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="h_realTime">
+        <item>
+         <layout class="QVBoxLayout" name="v_labels_realTime">
+          <item>
+           <widget class="QLabel" name="label_realTime">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Real-Time Factor</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="desc_realTime">
+            <property name="styleSheet">
+             <string>color: #9aa4b2; font-size: 10px;</string>
+            </property>
+            <property name="text">
+             <string>Simulation speed multiplier (1.0 = real-time)</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="h_realtime_controls">
+          <item>
+           <widget class="QSlider" name="sliderRealTime">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>100</number>
+            </property>
+            <property name="value">
+             <number>10</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelRealTimeValue">
+            <property name="minimumSize">
+             <size>
+              <width>48</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Monospace</family>
+             </font>
+            </property>
+            <property name="text">
+             <string>1.0x</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="h_autoSave">
+        <item>
+         <layout class="QVBoxLayout" name="v_labels_autoSave">
+          <item>
+           <widget class="QLabel" name="label_autoSave">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Auto-Save Interval</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="desc_autoSave">
+            <property name="styleSheet">
+             <string>color: #9aa4b2; font-size: 10px;</string>
+            </property>
+            <property name="text">
+             <string>Automatically save mission state</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="spinAutoSave">
+          <property name="suffix">
+           <string> s</string>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>86400</number>
+          </property>
+          <property name="value">
+           <number>99</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupMissionDefaults">
+     <property name="title">
+      <string>Mission Defaults</string>
+     </property>
+     <layout class="QVBoxLayout" name="vb_mission_defaults">
+      <item>
+       <layout class="QHBoxLayout" name="h_defaultEnv">
+        <item>
+         <layout class="QVBoxLayout" name="v_labels_defaultEnv">
+          <item>
+           <widget class="QLabel" name="label_defaultEnv">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Default Environment</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="desc_defaultEnv">
+            <property name="styleSheet">
+             <string>color: #9aa4b2; font-size: 10px;</string>
+            </property>
+            <property name="text">
+             <string>Starting environment for new missions</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboDefaultEnv">
+          <item>
+           <property name="text">
+            <string>Deep Space</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Earth Orbit</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Mars Transfer</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Drone (Atmospheric)</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="h_initialAIMode">
+        <item>
+         <layout class="QVBoxLayout" name="v_labels_initialAI">
+          <item>
+           <widget class="QLabel" name="label_initialAI">
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Initial AI Mode</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="desc_initialAI">
+            <property name="styleSheet">
+             <string>color: #9aa4b2; font-size: 10px;</string>
+            </property>
+            <property name="text">
+             <string>AI behavior when mission starts</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboInitialAIMode">
+          <item>
+           <property name="text">
+            <string>Autonomous</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Manual Control</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Assisted Mode</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

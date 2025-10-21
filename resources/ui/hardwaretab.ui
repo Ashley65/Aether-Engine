@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>HardwareTab</class>
+    <widget class="QWidget" name="HardwareTab">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>800</width>
+                <height>900</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>HardwareTab</string>
+        </property>
+        <layout class="QVBoxLayout" name="mainLayout">
+            <item>
+                <widget class="QScrollArea" name="scrollArea">
+                    <property name="widgetResizable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="verticalScrollBarPolicy">
+                        <enum>Qt::ScrollBarAsNeeded</enum>
+                    </property>
+                    <property name="horizontalScrollBarPolicy">
+                        <enum>Qt::ScrollBarAsNeeded</enum>
+                    </property>
+                    <widget class="QWidget" name="scrollAreaWidgetContents">
+                        <property name="geometry">
+                            <rect>
+                                <x>0</x>
+                                <y>0</y>
+                                <width>778</width>
+                                <height>850</height>
+                            </rect>
+                        </property>
+                        <layout class="QVBoxLayout" name="verticalLayout">
+                            <property name="spacing">
+                                <number>20</number>
+                            </property>
+                            <item>
+                                <widget class="QFrame" name="infoFrame">
+                                    <property name="styleSheet">
+                                        <string notr="true">#infoFrame {
+                                            background-color: rgba(59, 130, 246, 0.1);
+                                            border: 1px solid #2563eb;
+                                            border-radius: 8px;
+                                            }</string>
+                                    </property>
+                                    <property name="frameShape">
+                                        <enum>QFrame::StyledPanel</enum>
+                                    </property>
+                                    <property name="frameShadow">
+                                        <enum>QFrame::Raised</enum>
+                                    </property>
+                                    <layout class="QHBoxLayout" name="horizontalLayout">
+                                        <item>
+                                            <widget class="QLabel" name="iconLabel">
+                                                <property name="sizePolicy">
+                                                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                                        <horstretch>0</horstretch>
+                                                        <verstretch>0</verstretch>
+                                                    </sizepolicy>
+                                                </property>
+                                                <property name="text">
+                                                    <string>ℹ️</string>
+                                                </property>
+                                                <property name="alignment">
+                                                    <set>Qt::AlignTop</set>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <item>
+                                            <layout class="QVBoxLayout" name="warningTextLayout">
+                                                <item>
+                                                    <widget class="QLabel" name="warningTitleLabel">
+                                                        <property name="text">
+                                                            <string>Hardware Integration</string>
+                                                        </property>
+                                                        <property name="font">
+                                                            <font>
+                                                                <weight>75</weight>
+                                                                <bold>true</bold>
+                                                            </font>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QLabel" name="warningDescriptionLabel">
+                                                        <property name="text">
+                                                            <string>These settings apply when operating mode is set to "Hardware Testing" or "Hardware-in-the-Loop".</string>
+                                                        </property>
+                                                        <property name="wordWrap">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+                            <!-- Connection Section -->
+                            <item>
+                                <widget class="QGroupBox" name="connectionGroup">
+                                    <property name="title">
+                                        <string>Connection</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="connectionLayout">
+                                        <!-- Hardware Type -->
+                                        <item>
+                                            <layout class="QHBoxLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="hardwareTypeLabelLayout">
+                                                        <property name="spacing">
+                                                            <number>2</number>
+                                                        </property>
+                                                        <item>
+                                                            <widget class="QLabel" name="hardwareTypeLabel">
+                                                                <property name="text">
+                                                                    <string>Hardware Type</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="hardwareTypeDescription">
+                                                                <property name="text">
+                                                                    <string>Target platform for deployment</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9CA3AF; font-size: 11px;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="horizontalSpacer1">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QComboBox" name="hardwareTypeCombo">
+                                                        <property name="minimumWidth">
+                                                            <number>250</number>
+                                                        </property>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>PX4 Drone (MAVLink)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>ArduPilot (MAVLink)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Custom Spacecraft Avionics</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>CubeSat (CCSDS)</string>
+                                                            </property>
+                                                        </item>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <widget class="Line" name="line1">
+                                                <property name="orientation">
+                                                    <enum>Qt::Horizontal</enum>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <!-- Communication Protocol -->
+                                        <item>
+                                            <layout class="QHBoxLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="protocolLabelLayout">
+                                                        <property name="spacing">
+                                                            <number>2</number>
+                                                        </property>
+                                                        <item>
+                                                            <widget class="QLabel" name="protocolLabel">
+                                                                <property name="text">
+                                                                    <string>Communication Protocol</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="protocolDescription">
+                                                                <property name="text">
+                                                                    <string>Data exchange format</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9CA3AF; font-size: 11px;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="horizontalSpacer2">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QComboBox" name="protocolCombo">
+                                                        <property name="minimumWidth">
+                                                            <number>250</number>
+                                                        </property>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>MAVLink v2</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>CCSDS Space Packets</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Custom Binary</string>
+                                                            </property>
+                                                        </item>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <widget class="Line" name="line2">
+                                                <property name="orientation">
+                                                    <enum>Qt::Horizontal</enum>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <!-- Connection String -->
+                                        <item>
+                                            <layout class="QHBoxLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="connectionStringLabelLayout">
+                                                        <property name="spacing">
+                                                            <number>2</number>
+                                                        </property>
+                                                        <item>
+                                                            <widget class="QLabel" name="connectionStringLabel">
+                                                                <property name="text">
+                                                                    <string>Connection String</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="connectionStringDescription">
+                                                                <property name="text">
+                                                                    <string>Serial port or network address</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9CA3AF; font-size: 11px;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="horizontalSpacer3">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QLineEdit" name="connectionStringEdit">
+                                                        <property name="minimumWidth">
+                                                            <number>250</number>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string>/dev/ttyUSB0</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <widget class="Line" name="line3">
+                                                <property name="orientation">
+                                                    <enum>Qt::Horizontal</enum>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <!-- Baud Rate -->
+                                        <item>
+                                            <layout class="QHBoxLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="baudRateLabelLayout">
+                                                        <property name="spacing">
+                                                            <number>2</number>
+                                                        </property>
+                                                        <item>
+                                                            <widget class="QLabel" name="baudRateLabel">
+                                                                <property name="text">
+                                                                    <string>Baud Rate</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="baudRateDescription">
+                                                                <property name="text">
+                                                                    <string>Serial communication speed</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9CA3AF; font-size: 11px;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="horizontalSpacer4">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QComboBox" name="baudRateCombo">
+                                                        <property name="minimumWidth">
+                                                            <number>250</number>
+                                                        </property>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>57600</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>115200</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>921600</string>
+                                                            </property>
+                                                        </item>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+                            <!-- Safety & Failsafes Section -->
+                            <item>
+                                <widget class="QGroupBox" name="safetyGroup">
+                                    <property name="title">
+                                        <string>Safety &amp; Failsafes</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="safetyLayout">
+                                        <!-- Enable Geofencing -->
+                                        <item>
+                                            <layout class="QHBoxLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="geofencingLabelLayout">
+                                                        <property name="spacing">
+                                                            <number>2</number>
+                                                        </property>
+                                                        <item>
+                                                            <widget class="QLabel" name="geofencingLabel">
+                                                                <property name="text">
+                                                                    <string>Enable Geofencing</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="geofencingDescription">
+                                                                <property name="text">
+                                                                    <string>Prevent hardware from leaving safe zone</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9CA3AF; font-size: 11px;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="horizontalSpacer5">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QCheckBox" name="geofencingCheckBox">
+                                                        <property name="checked">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <widget class="Line" name="line4">
+                                                <property name="orientation">
+                                                    <enum>Qt::Horizontal</enum>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <!-- Geofence Radius -->
+                                        <item>
+                                            <layout class="QHBoxLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="geofenceRadiusLabelLayout">
+                                                        <property name="spacing">
+                                                            <number>2</number>
+                                                        </property>
+                                                        <item>
+                                                            <widget class="QLabel" name="geofenceRadiusLabel">
+                                                                <property name="text">
+                                                                    <string>Geofence Radius</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="geofenceRadiusDescription">
+                                                                <property name="text">
+                                                                    <string>Maximum distance from origin</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9CA3AF; font-size: 11px;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="horizontalSpacer6">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QSpinBox" name="geofenceRadiusSpinBox">
+                                                        <property name="maximum">
+                                                            <number>10000</number>
+                                                        </property>
+                                                        <property name="value">
+                                                            <number>100</number>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QLabel" name="metersLabel">
+                                                        <property name="text">
+                                                            <string>meters</string>
+                                                        </property>
+                                                        <property name="styleSheet">
+                                                            <string>color: #9CA3AF; font-size: 11px;</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <widget class="Line" name="line5">
+                                                <property name="orientation">
+                                                    <enum>Qt::Horizontal</enum>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <!-- AI Watchdog Timeout -->
+                                        <item>
+                                            <layout class="QHBoxLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="watchdogLabelLayout">
+                                                        <property name="spacing">
+                                                            <number>2</number>
+                                                        </property>
+                                                        <item>
+                                                            <widget class="QLabel" name="watchdogLabel">
+                                                                <property name="text">
+                                                                    <string>AI Watchdog Timeout</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="watchdogDescription">
+                                                                <property name="text">
+                                                                    <string>Trigger failsafe if no AI commands received</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9CA3AF; font-size: 11px;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="horizontalSpacer7">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QSpinBox" name="watchdogSpinBox">
+                                                        <property name="maximum">
+                                                            <number>10000</number>
+                                                        </property>
+                                                        <property name="value">
+                                                            <number>500</number>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QLabel" name="millisecondsLabel">
+                                                        <property name="text">
+                                                            <string>milliseconds</string>
+                                                        </property>
+                                                        <property name="styleSheet">
+                                                            <string>color: #9CA3AF; font-size: 11px;</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <widget class="Line" name="line6">
+                                                <property name="orientation">
+                                                    <enum>Qt::Horizontal</enum>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <!-- Manual Override -->
+                                        <item>
+                                            <layout class="QHBoxLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="manualOverrideLabelLayout">
+                                                        <property name="spacing">
+                                                            <number>2</number>
+                                                        </property>
+                                                        <item>
+                                                            <widget class="QLabel" name="manualOverrideLabel">
+                                                                <property name="text">
+                                                                    <string>Manual Override</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="manualOverrideDescription">
+                                                                <property name="text">
+                                                                    <string>Allow RC transmitter to override AI</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9CA3AF; font-size: 11px;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="horizontalSpacer8">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QCheckBox" name="manualOverrideCheckBox">
+                                                        <property name="checked">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+                            <!-- Sim-to-Real Adaptations Section -->
+                            <item>
+                                <widget class="QGroupBox" name="simToRealGroup">
+                                    <property name="title">
+                                        <string>Sim-to-Real Adaptations</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="simToRealLayout">
+                                        <!-- Domain Randomization -->
+                                        <item>
+                                            <layout class="QHBoxLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="domainRandomizationLabelLayout">
+                                                        <property name="spacing">
+                                                            <number>2</number>
+                                                        </property>
+                                                        <item>
+                                                            <widget class="QLabel" name="domainRandomizationLabel">
+                                                                <property name="text">
+                                                                    <string>Domain Randomization</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="domainRandomizationDescription">
+                                                                <property name="text">
+                                                                    <string>Add noise during training to improve hardware robustness</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9CA3AF; font-size: 11px;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="horizontalSpacer9">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QCheckBox" name="domainRandomizationCheckBox">
+                                                        <property name="checked">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <widget class="Line" name="line7">
+                                                <property name="orientation">
+                                                    <enum>Qt::Horizontal</enum>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <!-- Sensor Noise Profile -->
+                                        <item>
+                                            <layout class="QHBoxLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="sensorNoiseLabelLayout">
+                                                        <property name="spacing">
+                                                            <number>2</number>
+                                                        </property>
+                                                        <item>
+                                                            <widget class="QLabel" name="sensorNoiseLabel">
+                                                                <property name="text">
+                                                                    <string>Sensor Noise Profile</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="sensorNoiseDescription">
+                                                                <property name="text">
+                                                                    <string>Simulate real sensor characteristics</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9CA3AF; font-size: 11px;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="horizontalSpacer10">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QComboBox" name="sensorNoiseCombo">
+                                                        <property name="minimumWidth">
+                                                            <number>250</number>
+                                                        </property>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Perfect (Sim only)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Low Noise (Lab conditions)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Moderate Noise (Typical field)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>High Noise (Worst case)</string>
+                                                            </property>
+                                                        </item>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <widget class="Line" name="line8">
+                                                <property name="orientation">
+                                                    <enum>Qt::Horizontal</enum>
+                                                </property>
+                                            </widget>
+                                        </item>
+                                        <!-- Actuator Delay -->
+                                        <item>
+                                            <layout class="QHBoxLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="actuatorDelayLabelLayout">
+                                                        <property name="spacing">
+                                                            <number>2</number>
+                                                        </property>
+                                                        <item>
+                                                            <widget class="QLabel" name="actuatorDelayLabel">
+                                                                <property name="text">
+                                                                    <string>Actuator Delay</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="actuatorDelayDescription">
+                                                                <property name="text">
+                                                                    <string>Simulate real thrust/control lag</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: #9CA3AF; font-size: 11px;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="horizontalSpacer11">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QDoubleSpinBox" name="actuatorDelaySpinBox">
+                                                        <property name="decimals">
+                                                            <number>2</number>
+                                                        </property>
+                                                        <property name="singleStep">
+                                                            <double>0.01</double>
+                                                        </property>
+                                                        <property name="value">
+                                                            <double>0.05</double>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QLabel" name="secondsLabel">
+                                                        <property name="text">
+                                                            <string>seconds</string>
+                                                        </property>
+                                                        <property name="styleSheet">
+                                                            <string>color: #9CA3AF; font-size: 11px;</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+                            <item>
+                                <spacer name="verticalSpacer">
+                                    <property name="orientation">
+                                        <enum>Qt::Vertical</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                        <size>
+                                            <width>20</width>
+                                            <height>40</height>
+                                        </size>
+                                    </property>
+                                </spacer>
+                            </item>
+                        </layout>
+                    </widget>
+                </widget>
+            </item>
+        </layout>
+    </widget>
+    <resources/>
+    <connections/>
+</ui>

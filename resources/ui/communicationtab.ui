@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>CommunicationTab</class>
+    <widget class="QWidget" name="CommunicationTab">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>500</width>
+                <height>450</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>Communication Settings</string>
+        </property>
+        <layout class="QVBoxLayout" name="mainLayout">
+            <item>
+                <widget class="QScrollArea" name="scrollArea">
+                    <property name="widgetResizable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="frameShape">
+                        <enum>QFrame::NoFrame</enum>
+                    </property>
+                    <widget class="QWidget" name="scrollAreaWidgetContents">
+                        <layout class="QVBoxLayout" name="scrollLayout">
+                            <item>
+                                <widget class="QGroupBox" name="ipcGroupBox">
+                                    <property name="title">
+                                        <string>IPC (Inter-Process Communication)</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="ipcLayout">
+                                        <item>
+                                            <layout class="QHBoxLayout" name="zmqBackendRowLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="zmqBackendLabelLayout">
+                                                        <item>
+                                                            <widget class="QLabel" name="zmqBackendLabel">
+                                                                <property name="text">
+                                                                    <string>ZeroMQ Backend</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="zmqBackendDescription">
+                                                                <property name="text">
+                                                                    <string>Select ZeroMQ transport layer</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: gray; font-size: 10pt;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="zmqBackendSpacer">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QComboBox" name="zmqBackendComboBox">
+                                                        <property name="minimumSize">
+                                                            <size>
+                                                                <width>250</width>
+                                                                <height>0</height>
+                                                            </size>
+                                                        </property>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>TCP (tcp://localhost:5555)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>IPC (Unix sockets)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>In-Process (threads)</string>
+                                                            </property>
+                                                        </item>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <layout class="QHBoxLayout" name="requestTimeoutRowLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="requestTimeoutLabelLayout">
+                                                        <item>
+                                                            <widget class="QLabel" name="requestTimeoutLabel">
+                                                                <property name="text">
+                                                                    <string>Request Timeout</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="requestTimeoutDescription">
+                                                                <property name="text">
+                                                                    <string>Max wait time for IPC responses</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: gray; font-size: 10pt;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="requestTimeoutSpacer">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="timeoutInputLayout">
+                                                        <item>
+                                                            <widget class="QSpinBox" name="requestTimeoutSpinBox">
+                                                                <property name="value">
+                                                                    <number>1000</number>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <number>99999</number>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="millisecondsLabel">
+                                                                <property name="text">
+                                                                    <string>milliseconds</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <layout class="QHBoxLayout" name="messageFormatRowLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="messageFormatLabelLayout">
+                                                        <item>
+                                                            <widget class="QLabel" name="messageFormatLabel">
+                                                                <property name="text">
+                                                                    <string>Message Format</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="messageFormatDescription">
+                                                                <property name="text">
+                                                                    <string>Serialization protocol</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: gray; font-size: 10pt;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="messageFormatSpacer">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QComboBox" name="messageFormatComboBox">
+                                                        <property name="minimumSize">
+                                                            <size>
+                                                                <width>250</width>
+                                                                <height>0</height>
+                                                            </size>
+                                                        </property>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>JSON (Human-readable)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>MessagePack (Compact)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>Protocol Buffers</string>
+                                                            </property>
+                                                        </item>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QGroupBox" name="networkGroupBox">
+                                    <property name="title">
+                                        <string>Network (Remote Access)</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="networkLayout">
+                                        <item>
+                                            <layout class="QHBoxLayout" name="remoteAccessRowLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="remoteAccessLabelLayout">
+                                                        <item>
+                                                            <widget class="QLabel" name="remoteAccessLabel">
+                                                                <property name="text">
+                                                                    <string>Enable Remote Access</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="remoteAccessDescription">
+                                                                <property name="text">
+                                                                    <string>Allow external connections to mission control</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: gray; font-size: 10pt;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="remoteAccessSpacer">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QCheckBox" name="remoteAccessCheckBox">
+                                                        <property name="text">
+                                                            <string/>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <layout class="QHBoxLayout" name="webSocketPortRowLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="webSocketPortLabelLayout">
+                                                        <item>
+                                                            <widget class="QLabel" name="webSocketPortLabel">
+                                                                <property name="text">
+                                                                    <string>WebSocket Port</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="webSocketPortDescription">
+                                                                <property name="text">
+                                                                    <string>Port for browser-based dashboards</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: gray; font-size: 10pt;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="webSocketPortSpacer">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QSpinBox" name="webSocketPortSpinBox">
+                                                        <property name="value">
+                                                            <number>8080</number>
+                                                        </property>
+                                                        <property name="maximum">
+                                                            <number>65535</number>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <layout class="QHBoxLayout" name="authenticationRowLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="authenticationLabelLayout">
+                                                        <item>
+                                                            <widget class="QLabel" name="authenticationLabel">
+                                                                <property name="text">
+                                                                    <string>Authentication</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="authenticationDescription">
+                                                                <property name="text">
+                                                                    <string>Require password for remote connections</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: gray; font-size: 10pt;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="authenticationSpacer">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QCheckBox" name="authenticationCheckBox">
+                                                        <property name="text">
+                                                            <string/>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QGroupBox" name="logTelemetryGroupBox">
+                                    <property name="title">
+                                        <string>Logging &amp; Telemetry</string>
+                                    </property>
+                                    <layout class="QVBoxLayout" name="logTelemetryLayout">
+                                        <item>
+                                            <layout class="QHBoxLayout" name="telemetryRateRowLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="telemetryRateLabelLayout">
+                                                        <item>
+                                                            <widget class="QLabel" name="telemetryRateLabel">
+                                                                <property name="text">
+                                                                    <string>Telemetry Rate</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="telemetryRateDescription">
+                                                                <property name="text">
+                                                                    <string>Frequency of state broadcasts</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: gray; font-size: 10pt;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="telemetryRateSpacer">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <layout class="QHBoxLayout" name="telemetryRateInputLayout">
+                                                        <item>
+                                                            <widget class="QSpinBox" name="telemetryRateSpinBox">
+                                                                <property name="value">
+                                                                    <number>10</number>
+                                                                </property>
+                                                                <property name="maximum">
+                                                                    <number>1000</number>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="hzLabel">
+                                                                <property name="text">
+                                                                    <string>Hz</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                        <item>
+                                            <layout class="QHBoxLayout" name="logVerbosityRowLayout">
+                                                <item>
+                                                    <layout class="QVBoxLayout" name="logVerbosityLabelLayout">
+                                                        <item>
+                                                            <widget class="QLabel" name="logVerbosityLabel">
+                                                                <property name="text">
+                                                                    <string>Log Verbosity</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                        <item>
+                                                            <widget class="QLabel" name="logVerbosityDescription">
+                                                                <property name="text">
+                                                                    <string>Detail level for system logs</string>
+                                                                </property>
+                                                                <property name="styleSheet">
+                                                                    <string>color: gray; font-size: 10pt;</string>
+                                                                </property>
+                                                            </widget>
+                                                        </item>
+                                                    </layout>
+                                                </item>
+                                                <item>
+                                                    <spacer name="logVerbositySpacer">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>40</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QComboBox" name="logVerbosityComboBox">
+                                                        <property name="minimumSize">
+                                                            <size>
+                                                                <width>250</width>
+                                                                <height>0</height>
+                                                            </size>
+                                                        </property>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>ERROR (Critical only)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>WARNING (Important events)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>INFO (Standard operation)</string>
+                                                            </property>
+                                                        </item>
+                                                        <item>
+                                                            <property name="text">
+                                                                <string>DEBUG (Verbose)</string>
+                                                            </property>
+                                                        </item>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </item>
+                                    </layout>
+                                </widget>
+                            </item>
+                            <item>
+                                <spacer name="verticalSpacer">
+                                    <property name="orientation">
+                                        <enum>Qt::Vertical</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                        <size>
+                                            <width>20</width>
+                                            <height>40</height>
+                                        </size>
+                                    </property>
+                                </spacer>
+                            </item>
+                        </layout>
+                    </widget>
+                </widget>
+            </item>
+        </layout>
+    </widget>
+    <resources/>
+    <connections/>
+</ui>
