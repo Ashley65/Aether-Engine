@@ -21,13 +21,14 @@
 main_window::main_window(QWidget* parent) :
     QMainWindow(parent), ui(new Ui::main_window)
 {
-    WindowsFlags();
+
     ui->setupUi(this);
+    WindowsFlags();
     menuBar = new MenuBar(this);
     setMenuBar(menuBar);
 
-    m_docker = new DynamicDocker(this);
-    setCentralWidget(m_docker);
+    setupDockerPanels();
+
 
     setupDockerPanels();
     connect(menuBar, &MenuBar::openSettings, this, [this]() {
@@ -72,7 +73,12 @@ void main_window::setupDockerPanels()
         "QTreeWidget::item:selected { background-color: #0078d4; color: black; }"
         "QTreeWidget::item:hover { background-color: #e5f3ff; }"
     );
-    m_docker->addDockWidget("files", "Project Explorer", fileTree, DynamicDocker::LeftArea);
+
+    QDockWidget* filesDock = new QDockWidget("Project Explorer", this);
+    filesDock->setWidget(fileTree);
+    filesDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    addDockWidget(Qt::LeftDockWidgetArea, filesDock);
+    m_dockWidgets["files"] = filesDock;
 
     // Right Panel - Properties
     QTableWidget* properties = new QTableWidget(10, 2);
@@ -85,53 +91,38 @@ void main_window::setupDockerPanels()
     properties->setItem(2, 1, new QTableWidgetItem("1200"));
     properties->setItem(3, 0, new QTableWidgetItem("Height"));
     properties->setItem(3, 1, new QTableWidgetItem("800"));
-    properties->setItem(4, 0, new QTableWidgetItem("X Position"));
-    properties->setItem(4, 1, new QTableWidgetItem("100"));
-    properties->setItem(5, 0, new QTableWidgetItem("Y Position"));
-    properties->setItem(5, 1, new QTableWidgetItem("100"));
     properties->horizontalHeader()->setStretchLastSection(true);
     properties->setStyleSheet(
         "QTableWidget { background-color: white; border: none; gridline-color: #e0e0e0; }"
         "QHeaderView::section { background-color: #f0f0f0; padding: 6px; border: none; font-weight: bold; }"
-        "QTableWidget::item { padding: 4px; }"
-        "QTableWidget::item:selected { background-color: #0078d4; color: white; }"
     );
-    m_docker->addDockWidget("properties", "Properties", properties, DynamicDocker::RightArea);
 
-    // Bottom Panel - Console Output
+    QDockWidget* propDock = new QDockWidget("Properties", this);
+    propDock->setWidget(properties);
+    propDock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    addDockWidget(Qt::RightDockWidgetArea, propDock);
+    m_dockWidgets["properties"] = propDock;
+
+    // Bottom Panel - Console
     QTextEdit* console = new QTextEdit();
     console->setPlainText(
         "=== Build Output ===\n"
         "Compiling main.cpp...\n"
-        "Compiling main_window.cpp...\n"
-        "Compiling DynamicDocker.cpp...\n"
-        "Linking...\n"
         "Build successful! (0 errors, 0 warnings)\n"
-        "\n"
-        "=== Application Log ===\n"
-        "> [10:30:45] Application started\n"
-        "> [10:30:45] Initializing main window...\n"
-        "> [10:30:45] Loading docker system...\n"
-        "> [10:30:46] Docker initialized successfully\n"
-        "> [10:30:46] Loaded 4 dock panels\n"
-        "> [10:30:46] Ready\n"
-        "\n"
-        "Tip: Drag panel title bars to reposition or double-click to float!\n"
     );
     console->setReadOnly(true);
     console->setStyleSheet(
-        "QTextEdit { "
-        "  background-color: #1e1e1e; "
-        "  color: #d4d4d4; "
-        "  border: none; "
-        "  font-family: 'Consolas', 'Courier New', monospace; "
-        "  font-size: 11px; "
-        "  padding: 5px; "
-        "}"
+        "QTextEdit { background-color: #1e1e1e; color: #d4d4d4; border: none; "
+        "font-family: 'Consolas', monospace; font-size: 11px; padding: 5px; }"
     );
-    m_docker->addDockWidget("console", "Console Output", console, DynamicDocker::BottomArea);
 
-    // Top Panel - Toolbar/Quick Actions
+    QDockWidget* consoleDock = new QDockWidget("Console Output", this);
+    consoleDock->setWidget(console);
+    consoleDock->setAllowedAreas(Qt::BottomDockWidgetArea);
+    addDockWidget(Qt::BottomDockWidgetArea, consoleDock);
+    m_dockWidgets["console"] = consoleDock;
+
+    // Top Panel - Toolbar (as dock widget)
     QWidget* toolbarWidget = new QWidget();
     QHBoxLayout* toolbarLayout = new QHBoxLayout(toolbarWidget);
     toolbarLayout->setContentsMargins(10, 8, 10, 8);
@@ -141,27 +132,14 @@ void main_window::setupDockerPanels()
     QPushButton* saveBtn = new QPushButton("💾 Save");
     QPushButton* buildBtn = new QPushButton("🔨 Build");
     QPushButton* runBtn = new QPushButton("▶ Run");
-    QPushButton* debugBtn = new QPushButton("🐛 Debug");
 
-    QString btnStyle =
-        "QPushButton { "
-        "  background-color: #0078d4; "
-        "  color: white; "
-        "  border: none; "
-        "  padding: 8px 16px; "
-        "  border-radius: 4px; "
-        "  font-weight: bold; "
-        "  font-size: 12px; "
-        "}"
-        "QPushButton:hover { background-color: #106ebe; }"
-        "QPushButton:pressed { background-color: #005a9e; }";
-
+    QString btnStyle = "QPushButton { background-color: #0078d4; color: white; "
+                       "border: none; padding: 8px 16px; border-radius: 4px; }";
     newBtn->setStyleSheet(btnStyle);
     openBtn->setStyleSheet(btnStyle);
     saveBtn->setStyleSheet(btnStyle);
     buildBtn->setStyleSheet(btnStyle);
     runBtn->setStyleSheet(btnStyle);
-    debugBtn->setStyleSheet(btnStyle);
 
     toolbarLayout->addWidget(newBtn);
     toolbarLayout->addWidget(openBtn);
@@ -169,76 +147,28 @@ void main_window::setupDockerPanels()
     toolbarLayout->addSpacing(20);
     toolbarLayout->addWidget(buildBtn);
     toolbarLayout->addWidget(runBtn);
-    toolbarLayout->addWidget(debugBtn);
     toolbarLayout->addStretch();
 
-    toolbarWidget->setStyleSheet("QWidget { background-color: #f8f8f8; }");
-    m_docker->addDockWidget("toolbar", "Quick Actions", toolbarWidget, DynamicDocker::TopArea);
+    QDockWidget* toolbarDock = new QDockWidget("Quick Actions", this);
+    toolbarDock->setWidget(toolbarWidget);
+    toolbarDock->setAllowedAreas(Qt::TopDockWidgetArea);
+    toolbarDock->setFeatures(QDockWidget::DockWidgetMovable);  // Can't close/float
+    addDockWidget(Qt::TopDockWidgetArea, toolbarDock);
+    m_dockWidgets["toolbar"] = toolbarDock;
 
-    // Center Panel - Main Editor
+    // Center Widget - Editor (NOT a dock widget, use setCentralWidget)
     QTextEdit* editor = new QTextEdit();
-    editor->setPlainText(
-        "// main_window.cpp - Dynamic Docker Integration\n"
-        "#include \"main_window.h\"\n"
-        "#include \"ui_main_window.h\"\n"
-        "#include \"menu_bar.h\"\n"
-        "#include \"DynamicDocker.h\"\n"
-        "#include <QVBoxLayout>\n"
-        "\n"
-        "main_window::main_window(QWidget* parent) :\n"
-        "    QWidget(parent), ui(new Ui::main_window)\n"
-        "{\n"
-        "    WindowsFlags();\n"
-        "    ui->setupUi(this);\n"
-        "    menuBar = new MenuBar(this);\n"
-        "    \n"
-        "    // Create layout\n"
-        "    QVBoxLayout* layout = new QVBoxLayout(this);\n"
-        "    layout->setMenuBar(menuBar);\n"
-        "    layout->setContentsMargins(0, 0, 0, 0);\n"
-        "    \n"
-        "    // Setup docker system with drag-and-drop support\n"
-        "    m_docker = new DynamicDocker(this);\n"
-        "    layout->addWidget(m_docker);\n"
-        "    \n"
-        "    // Initialize dock panels\n"
-        "    setupDockerPanels();\n"
-        "    \n"
-        "    // Apply styling\n"
-        "    setAttribute(Qt::WA_TranslucentBackground);\n"
-        "    setStyleSheet(\n"
-        "        \"main_window {\"\n"
-        "        \"  background-color: white;\"\n"
-        "        \"  border-radius: 16px;\"\n"
-        "        \"}\"\n"
-        "    );\n"
-        "    \n"
-        "    setLayout(layout);\n"
-        "}\n"
-        "\n"
-        "// Features:\n"
-        "// • Drag panels by title bar to reposition\n"
-        "// • Double-click title bar to float/dock\n"
-        "// • Blue overlay shows drop zones\n"
-        "// • Auto-resize when panels added/removed\n"
-        "// • Floating panels can be dragged anywhere\n"
-    );
+    editor->setPlainText("// main_window.cpp - QDockWidget Integration\n"
+                         "#include \"main_window.h\"\n"
+                         "...");
     editor->setStyleSheet(
-        "QTextEdit { "
-        "  background-color: white; "
-        "  border: none; "
-        "  font-family: 'Consolas', 'Courier New', monospace; "
-        "  font-size: 12px; "
-        "  line-height: 1.6; "
-        "  padding: 10px; "
-        "}"
+        "QTextEdit { background-color: white; border: none; "
+        "font-family: 'Consolas', monospace; font-size: 12px; padding: 10px; }"
     );
-    m_docker->addDockWidget("editor", "Editor - main_window.cpp", editor, DynamicDocker::CenterArea);
-
-    // Set initial splitter sizes for better layout
-    m_docker->setSplitterSizes(Qt::Horizontal, QList<int>() << 250 << 700 << 250);
-    m_docker->setSplitterSizes(Qt::Vertical, QList<int>() << 60 << 500 << 140);
+    setCentralWidget(editor);  // The center is NOT a dock widget
+    m_centralEditor = editor;
 }
+
 
 
 // C++ (in main_window.cpp)

@@ -75,7 +75,6 @@ private:
 
     ResizeEdge getResizeEdge(const QPoint& pos);
     void updateCursor(const QPoint& pos);
-    void loadSettings(const QVariantMap& params, bool force);
     bool m_isDragging = false;
     bool m_isResizing = false;
     QPoint m_dragPosition;

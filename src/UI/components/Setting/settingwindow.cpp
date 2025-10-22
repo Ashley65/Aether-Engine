@@ -12,6 +12,7 @@
 
 
 
+
 SettingWindow::SettingWindow(QWidget* parent) :
     QWidget(parent), ui(new Ui::SettingWindow)
 {
@@ -64,7 +65,37 @@ SettingWindow::SettingWindow(QWidget* parent) :
         "}"
     );
 
-    // Tab widget styling
+   ui ->cancelButton->setStyleSheet(
+   "QTabWidget::pane {"
+    "   background-color: #1a1f2e;"   /* bg-tertiary */
+    "   border: 1px solid #2d3748;"   /* border-subtle */
+    "   border-radius: 4px;"
+    "}"
+    "QTabWidget::pane:focus {"
+    "   outline: none;"                /* Remove focus border */
+    "}"
+    "QTabBar::tab {"
+    "   background-color: #131720;"   /* bg-secondary */
+    "   color: #9ca3af;"               /* text-secondary */
+    "   padding: 8px 12px;"
+    "   border: 1px solid #2d3748;"
+    "   border-right: none;"
+    "   outline: none;"                /* Remove focus outline */
+    "}"
+    "QTabBar::tab:selected {"
+    "   background-color: #1a1f2e;"   /* bg-tertiary */
+    "   color: #e5e7eb;"               /* text-primary */
+    "   border-left: 2px solid #3b82f6;" /* info-500 */
+    "   outline: none;"
+    "}"
+    "QTabBar::tab:hover:!selected {"
+    "   background-color: #242938;"   /* bg-elevated */
+    "   color: #e5e7eb;"
+    "}"
+    "QTabBar::tab:focus {"
+    "   outline: none;"                /* Remove focus outline */
+    "}"
+       );
 
     ui->tabWidget->setStyleSheet(
         "QTabWidget::pane {"
@@ -266,6 +297,7 @@ void SettingWindow::loadSettingsFromManager()
         phys->loadSettings(manager.getCachedTabSettings("physics"), true);
     } else if (auto ai = qobject_cast<AIAgentTab*>(currentWidget)) {
 
+
     } else if (auto hw = qobject_cast<HardwareTab*>(currentWidget)) {
 
     } else if (auto comm = qobject_cast<CommunicationTab*>(currentWidget)) {
@@ -326,11 +358,6 @@ void SettingWindow::updateCursor(const QPoint& pos)
     }
 }
 
-void SettingWindow::loadSettings(const QVariantMap& params, bool force)
-{
-    // TODO: Implement loading of settings from params
-    Q_UNIMPLEMENTED();
-}
 
 void SettingWindow::mousePressEvent(QMouseEvent* event)
 {

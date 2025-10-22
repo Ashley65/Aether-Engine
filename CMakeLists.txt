@@ -1,11 +1,16 @@
-cmake_minimum_required(VERSION 4.0)
-project(Aether-Engine)
-set(CMAKE_PREFIX_PATH "C:/Qt/6.10.0/mingw_64")
+cmake_minimum_required(VERSION 3.18)
+project(Aether-Engine VERSION 0.1.0 LANGUAGES CXX CUDA)
+set(CMAKE_PREFIX_PATH "C:/Qt/6.10.0/msvc2022_64")
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CUDA_STANDARD 14)
+set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+
+
+# Enable automatic MOC, UIC, RCC for Qt
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
-
 set(CMAKE_AUTOUIC_SEARCH_PATHS ${CMAKE_SOURCE_DIR}/resources/ui)
 
 
@@ -15,16 +20,22 @@ find_package(Qt6 COMPONENTS
 		Widgets
 		REQUIRED)
 
-# find zeroMQ
-set(ZeroMQ_DIR "C:/Users/DevAccount/.vcpkg-clion/vcp/installed/x64-mingw-dynamic/share/zeromq")
+
+
+set(ZeroMQ_DIR "C:/Users/DevAccount/.vcpkg-clion/vcp/installed/x64-windows/share/zeromq")
 find_package(ZeroMQ CONFIG REQUIRED)
-set(cppzmq_DIR "C:/Users/DevAccount/.vcpkg-clion/vcp/installed/x64-mingw-dynamic/share/cppzmq")
+
+set(cppzmq_DIR "C:/Users/DevAccount/.vcpkg-clion/vcp/installed/x64-windows/share/cppzmq")
 find_package(cppzmq CONFIG REQUIRED)
 
-
-
-set(nlohmann_json_DIR "C:/Users/DevAccount/.vcpkg-clion/vcp/installed/x64-mingw-dynamic/share/nlohmann_json")
+set(nlohmann_json_DIR "C:/Users/DevAccount/.vcpkg-clion/vcp/installed/x64-windows/share/nlohmann_json")
 find_package(nlohmann_json REQUIRED)
+
+
+
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+	add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
 set(SOURCES
 		src/main.cpp
@@ -109,7 +120,17 @@ target_link_libraries(Aether-Engine PRIVATE
 )
 
 
-if (WIN32 AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+
+
+# Set CUDA properties
+set_target_properties(Aether-Engine PROPERTIES
+		CUDA_SEPARABLE_COMPILATION ON
+		CUDA_RESOLVE_DEVICE_SYMBOLS ON
+)
+
+
+
+if (WIN32)
 	set(DEBUG_SUFFIX)
 	if (MSVC AND CMAKE_BUILD_TYPE MATCHES "Debug")
 		set(DEBUG_SUFFIX "d")

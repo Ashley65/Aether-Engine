@@ -11,6 +11,8 @@
 #include <QPropertyAnimation>
 #include <QApplication>
 #include <QScreen>
+#include <QDockWidget>
+#include <QMap>
 
 
 #include "Docker/Docker.h"
@@ -33,7 +35,6 @@ public:
     explicit main_window(QWidget* parent = nullptr);
     ~main_window() override;
     void animationStep(bool toFullscreen);
-    DynamicDocker* docker() { return m_docker; }
     void setupDockerPanels();
 
 protected:
@@ -45,7 +46,8 @@ protected:
 private:
     Ui::main_window* ui;
     MenuBar* menuBar;
-    DynamicDocker* m_docker;
+    QMap<QString, QDockWidget*> m_dockWidgets;
+    QWidget* m_centralEditor;
     void WindowsFlags();
     bool resizing = false;
     QRect originalGeometry;

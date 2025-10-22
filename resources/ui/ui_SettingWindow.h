@@ -77,7 +77,6 @@ public:
 
         horizontalLayoutWidget_2 = new QWidget(frame);
         horizontalLayoutWidget_2->setObjectName("horizontalLayoutWidget_2");
-        horizontalLayoutWidget_2->setGeometry(QRect(30, 590, 81, 51));
         horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
